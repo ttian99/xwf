@@ -18,7 +18,8 @@ import '../i/touch/ms-touch-icon-144x144-precomposed.png';
 // import 'amazeui-touch/scss/amazeui.touch.scss'
 
 // load style
-import '../style/app.scss'
+import '../style/app-style.scss';
 
 // load App
-import './App'
+// import './App';
+import './test';

@@ -26,3 +26,22 @@ $ratchicons-path: "../../node_modules/amazeui-touch/fonts/";
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
+
+/**-- 自定义的样式在下面 --**/ 
+.root {
+  background-color: #ffffff;
+}
+
+.tabbar {
+  background-color: #ffffff;
+  height: 3.5625rem;
+  padding: 0 1rem;
+  padding-top: 0px;
+  padding-right: 0rem;
+  padding-bottom: 0px;
+  padding-left: 0rem;
+}
+
+.tabbar > .active, .tabbar > .active a {
+    color: #ff5f7a;
+}

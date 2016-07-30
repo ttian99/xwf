@@ -33,7 +33,7 @@ class App extends React.Component {
     const transition = children.props.transition || 'sfr';
 
     return (
-      <Container direction="column" id="sk-container">
+      <Container direction="column" id="jtx-cnt">
         <Container
           transition={transition}
           // fade transition example
@@ -41,7 +41,6 @@ class App extends React.Component {
           // transitionEnterTimeout={450}
           // transitionLeaveTimeout={300}
         >
-          {React.cloneElement(children, {key: location.key})}
         </Container>
 
         <TabBar
