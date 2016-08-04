@@ -8,6 +8,7 @@ import Page404 from './Page404';
 import School from './School';
 import District from './District';
 import Degree from './Degree';
+// import Search from './Search';
 // withRouter HoC
 // @see https://github.com/reactjs/react-router/blob/0616f6e14337f68d3ce9f758aa73f83a255d6db3/upgrade-guides/v2.4.0.md#v240-upgrade-guide
 const routes = (

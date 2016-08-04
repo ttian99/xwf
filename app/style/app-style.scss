@@ -69,19 +69,22 @@ $ratchicons-path: "../../node_modules/amazeui-touch/fonts/";
     text-align: center;
 }
 
+// 输入框样式
+input {
+    font-family: $body-font-family;
+    font-weight: $body-font-weight;
+    font-style: $body-font-style;
+    outline-color: #c3c3c3;
+}
+
 input.main-search.field {
-    color: #d2d2d2;
-    // width: 80%;
-    // margin-left: 10%;
-    // margin-right: 10%;
+    color: #d9d9d9;
     margin-bottom: 5px;
 }
 
 // 搜索框提示文字
 p.search-label {
     font-size: 14px;
-    // margin-left: 10%;
-    // margin-right: 10%;
     margin-top: 5px;
     text-align: left;
     color: #c3c3c3;
@@ -94,4 +97,42 @@ p.search-label span {
 .main-grid {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.detail-search.field {
+    color: #d9d9d9;
+    border-right-width: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.cancle-btn {
+    background-color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.clear-btn {
+    background-color: #ffffff;
+}
+
+p.cancle-btn-label {
+    color: #d9d9d9;
+    font-family: $body-font-family;
+    // font-weight: $body-font-weight;
+    font-style: $body-font-style;
+    font-size: 16px;
+    margin-top: 0px;
+    border-right-width: 0px;
+}
+
+.search-form {
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: #ff5f7a;
+}
+
+.search-form.g.g-collapse.g-bordered {
+    border-width: 2px 2px;
 }

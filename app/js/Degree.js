@@ -18,7 +18,7 @@ class Degree extends React.Component {
               placeholder="查学位锁定情况"
             />
           </Col>
-          <Col cols={2} padding="5px">
+          <Col cols={2}>
             <Field
               type="select"
               // label="Select"
