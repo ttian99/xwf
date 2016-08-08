@@ -74,24 +74,38 @@ input {
     font-family: $body-font-family;
     font-weight: $body-font-weight;
     font-style: $body-font-style;
-    outline-color: #c3c3c3;
 }
 
 input.main-search.field {
     color: #d9d9d9;
     margin-bottom: 5px;
+    outline-color: #c3c3c3;
 }
 
-// 搜索框提示文字
+// search1搜索框提示文字
 p.search-label {
     font-size: 14px;
+    padding-left: 15px;
     margin-top: 5px;
     text-align: left;
     color: #c3c3c3;
 }
 
+// search1搜索框<span>提示文字
 p.search-label span {
     color: #696969;
+}
+
+// search结果提示文字
+p.detail-search-label {
+    margin-bottom: 0px;
+    text-align: left;
+    color: #c3c3c3;
+}
+
+// search结果<span>提示文字
+p.detail-search-label span {
+    color: #ff5f7a;
 }
 
 .main-grid {
@@ -104,6 +118,10 @@ p.search-label span {
     border-right-width: 0px;
     padding-left: 15px;
     padding-right: 15px;
+    outline: none;
+    outline-color: none;
+    outline-style: none;
+    outline-width: none;
 }
 
 .cancle-btn {
@@ -114,6 +132,7 @@ p.search-label span {
 
 .clear-btn {
     background-color: #ffffff;
+    // display: none;
 }
 
 p.cancle-btn-label {
@@ -131,8 +150,23 @@ p.cancle-btn-label {
     padding-left: 15px;
     padding-right: 15px;
     border-color: #ff5f7a;
+    border-width: 2px;
 }
 
 .search-form.g.g-collapse.g-bordered {
-    border-width: 2px 2px;
+    border-width: 2px;
+    border-color: #ff5f7a;
+}
+
+.s1 {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+span.field-group-label {
+    background-color: #ffffff;
+    border-left-width: 0px;
+    border-right-width: 0px;
 }

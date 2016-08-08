@@ -3,13 +3,13 @@ import { browserHistory } from 'react-router';
 import { Container, Field, Grid, Col } from 'amazeui-touch';
 import Logo from './Logo';
 import Search from './Search';
+import Search1 from './Search1';
 
 class School extends React.Component {
   constructor(props) {
     super(props);
     // Operations usually carried out in componentWillMount go here
 
-    console.log(this.context);
     this.state={
       isDetail: false,
     };
@@ -17,6 +17,7 @@ class School extends React.Component {
 
   // 默认props
   static defaultProps = {
+    mode: 'school'
   }
 
   // 定义参数类型
@@ -24,67 +25,28 @@ class School extends React.Component {
     // router: React.PropTypes.object.isRequired
   }
 
-  handleClick = () => {
-    console.log('----------- click the iniput ---------');
-    console.log('this.props.isDetail = ' +this.props.isDetail);
+  // dom状态的改变
+  changeState = (newState) => {
+    console.log('=======')
     console.log('this.state.isDetail = ' +this.state.isDetail);
-    this.setState({isDetail: true});
-    // this.props.isDetail = true;
-    // this.props.history.push('/search');
-
-    // browserHistory.push('/degree');
-    // this.props.history.pushState(null, '/degree');
-    // this.context.router.push('/degree');
-    // this.context.router.push('/degree');
-    // console.log(JSON.stringify(this.props));
-    // import { browserHistory } from 'react-router';
-    
-    // this.props.router.push('/degree');
-    // this.context.router.push('/degree');
-    // this.router.push('/degree');
-    console.log('this.props.isDetail = ' +this.props.isDetail);
+    this.setState({isDetail: newState});
     console.log('this.state.isDetail = ' +this.state.isDetail);
   }
 
   render() {
     let ret = null;
     const mainSearch = (
-      <Container className="main-search-cnt">
-        <Grid className="main-grid" wrap="wrap">
-          <Col cols={6}>
-            <Logo />
-          </Col>
-          <Col cols={6}>
-            <Field
-              // label="Your Name"
-              // containerClassName="school-search"
-              className="main-search"
-              placeholder="请输入学校关键字"
-              onClick={this.handleClick}
-            />
-          </Col>
-          <Col cols={6}>
-            <p className="search-label">例：输入“<span>深圳中学</span>”找到对口学区楼盘</p>
-          </Col>
-        </Grid>
-      </Container>
+      <Search1 {...this.props} onParentCb={this.changeState} />
     );
-
     const detailSearch = (
-      <Search />
-      // <Container className="main-search-cnt">
-      //   <Field
-      //     // label="Your Name"
-      //     // containerClassName="school-search"
-      //     className="detail-search"
-      //     placeholder="请输入多舒服舒服服全名"
-      //   />
-      // </Container>
+      <Search {...this.props} onParentCb={this.changeState} />
     );
 
     ret = mainSearch;
     if (this.state.isDetail) {
       ret = detailSearch;
+    } else {
+      ret = mainSearch;
     }
     return ret;
   }
