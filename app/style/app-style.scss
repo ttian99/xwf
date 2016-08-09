@@ -98,19 +98,30 @@ p.search-label span {
 
 // search结果提示文字
 p.detail-search-label {
+    background-color: #fafafa;
     margin-bottom: 0px;
+    font-size: 14px;
     text-align: left;
     color: #c3c3c3;
+    padding-left: 15px;
 }
 
 // search结果<span>提示文字
 p.detail-search-label span {
+    background-color: #fafafa;
     color: #ff5f7a;
 }
 
 .main-grid {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.detail-search-cnt {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-bottom: 57px;
+    padding-bottom: 57px;
 }
 
 .detail-search.field {
@@ -122,6 +133,65 @@ p.detail-search-label span {
     outline-color: none;
     outline-style: none;
     outline-width: none;
+}
+
+.detail-list-cnt {
+    margin-bottom: 57px;
+}
+
+.detail-list {
+    font-size: 12px;
+    margin-top: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    // border: 1px solid #696969;
+}
+
+.detail-list-header {
+    background-color: #dddddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.detail-list-item {
+    background-color: #12ccff;
+    // border: solid 2px #ff5f7a;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ff5f7a;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.detail-list-item-first {
+    background-color: #12ccff;
+    // border: solid 2px #ff5f7a;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ff5f7a;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.detail-list-item-last {
+    background-color: #12ccff;
+    // border: solid 2px #ff5f7a;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ff5f7a;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.detail-name {
+    font-size: 14.5px;
 }
 
 .cancle-btn {

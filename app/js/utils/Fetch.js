@@ -23,7 +23,6 @@ function getXHR() {
 
 function requestFunc(method = 'GET', body) {
   console.log('------- requestFunc ----------');
-  
 }
 
 /**
