@@ -6,10 +6,6 @@ class Search1 extends React.Component {
   constructor(props) {
     super(props);
     // Operations usually carried out in componentWillMount go here
-    console.log('this.props.isDetail = ' + this.props.isDetail);
-    this.state = {
-      isDetail: this.props.isDetail
-    }
   }
 
   // 默认props
@@ -23,7 +19,7 @@ class Search1 extends React.Component {
 
   handleClick = () => {
     console.log('----------- click the iniput ---------');
-    this.props.onParentCb(true);
+    this.props.onChangePage(true);
   }
 
   render() {

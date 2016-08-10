@@ -26,7 +26,7 @@ class School extends React.Component {
   }
 
   // dom状态的改变
-  changeState = (newState) => {
+  changePageState = (newState) => {
     console.log('=======')
     console.log('this.state.isDetail = ' +this.state.isDetail);
     this.setState({isDetail: newState});
@@ -36,10 +36,10 @@ class School extends React.Component {
   render() {
     let ret = null;
     const mainSearch = (
-      <Search1 {...this.props} onParentCb={this.changeState} />
+      <Search1 {...this.props} onChangePage={this.changePageState} />
     );
     const detailSearch = (
-      <Search {...this.props} onParentCb={this.changeState} />
+      <Search {...this.props} onChangePage={this.changePageState} />
     );
 
     ret = mainSearch;

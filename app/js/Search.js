@@ -10,36 +10,19 @@ class Search extends React.Component {
     super(props);
     // Operations usually carried out in componentWillMount go here
     this.state = {
-      haveData: true,  // 是否有详细的数据
-      value: ""
+      haveData: false,  // 是否有详细的数据
+      schoolList: [],   // 搜索的list
+      searchValue: ""   // 搜索的关键字
     };
+  }
+  componentWillMount() {
+    console.log('--------- willMount --------');
+    console.log(this.props);
   }
 
   // 默认props
   static defaultProps = {
-    curWords: "",
-    schoolList: [
-      { name: "招商海月一期", price: 67500, year: "2005" },
-      { name: "花果山小区", price: 45000, year: "2005" },
-      { name: "桃园新居", price: 5100, year: "2005" },
-      { name: "湾厦新村", price: 67500, year: "2005" },
-      { name: "招商海月一期", price: 67500, year: "2005" },
-      { name: "招商海月一期", price: 67500, year: "2005" },
-      { name: "招商海月一期", price: 67500, year: "未知" },
-      { name: "招商海月一期", price: 67500, year: "2005" },
-      { name: "招商海月一期", price: 67500, year: "2005" },
-      { name: "招商海月一期", price: 67500, year: "2005" },
-      { name: "招商海月一期10", price: 67500, year: "2005" },
-      { name: "招商海月一期9", price: 67500, year: "2005" },
-      { name: "招商海月一期8", price: 67500, year: "2005" },
-      { name: "招商海月一期7", price: 67500, year: "2005" },
-      { name: "招商海月一期6", price: 67500, year: "2005" },
-      { name: "招商海月一期5", price: 67500, year: "2005" },
-      { name: "招商海月一期4", price: 67500, year: "2005" },
-      { name: "招商海月一期3", price: 67500, year: "2005" },
-      { name: "招商海月一期2", price: 67500, year: "2005" },
-      { name: "招商海月一期last", price: 67500, year: "2005" },      
-    ]
+    curWords: ""
   }
 
   // 定义参数类型
@@ -54,11 +37,41 @@ class Search extends React.Component {
   } 
 
   // 改变状态
-  changeState = (newState) => {
+  changeResultState = (data) => {
     console.log('---------- changeState -------');
     console.log(this.state.haveData);
-    this.setState({ haveData: true });
-    console.log(this.state.haveData);
+    this.setState({
+      haveData: data.haveData,
+      schoolList: data.list,
+      searchValue: data.searchValue,
+    });
+    console.log(this.state);
+  }
+
+  changeSchoolList = () => {
+    console.log('--------- changeSchoolList -------------');
+    this.props.schoolList = [
+      { name: "招商海月一期", price: 67500, year: "2005" },
+      { name: "花果山小区", price: 45000, year: "2005" },
+      { name: "桃园新居", price: 5100, year: "2005" },
+      { name: "湾厦新村", price: 122, year: "2005" },
+      { name: "招商海月一期", price: 67500900, year: "2005" },
+      { name: "招商海月一期", price: 67500, year: "2005" },
+      { name: "招商海月一期", price: 674500, year: "未知" },
+      { name: "招商海月一期", price: 67500, year: "2005" },
+      { name: "招商海月一期", price: 67500, year: "2005" },
+      { name: "招商海月一期", price: 67500, year: "2005" },
+      { name: "招商海月一期1sdfdsfsdsdfsdf0", price: 67500, year: "2005" },
+      { name: "招商海月一期9", price: 67500, year: "2005" },
+      { name: "招商海月一期8水电费第三方", price: 67500, year: "2005" },
+      { name: "招商海月一期7", price: 67500, year: "2005" },
+      { name: "招商海月一期6", price: 67500, year: "2005" },
+      { name: "招商海月一期5", price: 67500, year: "2005" },
+      { name: "招商海月一期4", price: 67500, year: "2005" },
+      { name: "招商海月一期3", price: 67500, year: "2005" },
+      { name: "招商海月一期2", price: 67500, year: "2005" },
+      { name: "招商海月一期last", price: 67500, year: "2005" },      
+    ];
   }
   
   renderLoader = () => {
@@ -73,6 +86,7 @@ class Search extends React.Component {
     );
   }
   render() {
+    // this.changeSchoolList();
     // let defaultPlaceholder = "";
     // if (this.props.mode === "school") {
     //   defaultPlaceholder = "请输入学校关键字"
@@ -108,11 +122,11 @@ class Search extends React.Component {
 
     const header = (
       <Container>
-        <p className="detail-search-label"><span>实验小学</span>  对口学区楼盘 ({this.props.schoolList.length}) </p>
+        <p className="detail-search-label"><span>{this.state.searchValue}</span>  对口学区楼盘 ({this.state.schoolList.length}) </p>
         <Grid className="detail-list-header" collapse={true} bordered={false}>
           <Col className="detail-name" cols={3}><span>楼盘</span></Col>
-          <Col cols={1.5}><span>均价(平米) </span></Col>
-          <Col cols={1.5}><span>开盘(年) </span></Col>
+          <Col cols={2}><span>均价(平米)</span></Col>
+          <Col cols={1}><span>开盘(年)</span></Col>
         </Grid>
       </Container>
     ); 
@@ -140,43 +154,18 @@ class Search extends React.Component {
     if (this.state.haveData) {
       page =  (
         <Container className="detail-search-cnt" scrollable={true}>
-              <SearchBar {...this.props}/>
+              <SearchBar {...this.props} onChangeResult={this.changeResultState}/>
               {header}
-              <ResultList {...this.props}/>
+              <ResultList {...this.props} schoolList={this.state.schoolList}/>
         </Container>  
       )
     } else {
       page = (
         <Container className="detail-search-cnt" scrollable={true}>
-              <SearchBar {...this.props}/>
+              <SearchBar {...this.props} onChangeResult={this.changeResultState}/>
         </Container>
       ) 
     }
-
-    const selfInput = (
-      <input className="self-input" placeholder="请输入"/>
-    );
-
-    const grid = (
-       <Grid
-          className="search-form"
-          collapse={true}
-          bordered={true}
-        >
-          <Col cols={4} className="s1">cols: 4</Col>
-          <Col cols={1} className="s2">cols: 1</Col>
-          <Col cols={1} className="s3">cols: 1</Col>
-        </Grid>
-    );
-
-
-        // <Container className="detail-search-cnt">
-        //       {input}
-        // </Container>
-
-
-
-
     return page;
   }
 }

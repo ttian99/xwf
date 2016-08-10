@@ -2,45 +2,42 @@ import React from 'react';
 import { Container, Field, Grid, Col, List } from 'amazeui-touch';
 
 class ResultList extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, state) {
+    super(props, state);
     // Operations usually carried out in componentWillMount go here
-
+    console.log(this.props);
     this.state={
-      isDetail: false,
+      schoolList: this.props.schoolList,
     };
   }
 
   // 默认props
   static defaultProps = {
-    mode: 'school'
+    // mode: 'school',
   }
   
   render() {
     return (
-      // <Container className="detail-list-cnt" direction="column" scrollable={false}>
         <List className="detail-list">
           {
             /* 遍历数据 */
-            this.props.schoolList.map((item, i) => {
+            this.state.schoolList.map((item, i) => {
               let className = "detail-list-item";
               if (i === 0) {
-                className = "detail-list-item" + "-head"
-              } else if (i === this.props.schoolList.length - 1) {
-                className = "detail-list-item" + "-end"
+                className = "detail-list-item" + "-first"
               }
               return (
+
+
                 <Grid key={i} className={className} collapse={true} bordered={false}>
-                  <Col className="detail-name" cols={3}><span>{item.name + ''}</span></Col>
-                  <Col cols={1.5}><span>{"¥" + item.price}</span></Col>
-                  <Col cols={1.5}><span>{item.year + ''}</span></Col>
+                  <Col className="detail-list-item-left" cols={3}><span>{item.name + ''}</span></Col>
+                  <Col className="detail-list-item-middle"cols={2}><span>{"¥" + item.price}</span></Col>
+                  <Col className="detail-list-item-right" cols={1}><span>{item.year + ''}</span></Col>
                 </Grid>
-                // <hr/>
               );
             })
           }
         </List>
-      // </Container>
     );
   }
 }

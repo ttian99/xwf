@@ -135,15 +135,20 @@ p.detail-search-label span {
     outline-width: none;
 }
 
-.detail-list-cnt {
-    margin-bottom: 57px;
-}
-
+// .detail-list-cnt {
+//     // margin-top: 0px;
+//     margin-bottom: 57px;
+//     margin-left: 15px;
+//     margin: 15px;
+//     font-size: 12px;
+//     // padding-left: 15px;
+//     // padding-right: 15px;
+// }
 .detail-list {
     font-size: 12px;
     margin-top: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
+    // padding-left: 15px;
+    // padding-right: 15px;
     // border: 1px solid #696969;
 }
 
@@ -160,38 +165,25 @@ p.detail-search-label span {
 }
 
 .detail-list-item {
-    background-color: #12ccff;
-    // border: solid 2px #ff5f7a;
     border-style: solid;
     border-width: 1px;
-    border-color: #ff5f7a;
+    border-color: #d9d9d9;
     padding-top: 10px;
     padding-bottom: 10px;
-
+    border-top-width: 0px;
 }
 
 .detail-list-item-first {
-    background-color: #12ccff;
-    // border: solid 2px #ff5f7a;
     border-style: solid;
     border-width: 1px;
-    border-color: #ff5f7a;
+    border-color: #d9d9d9;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.detail-list-item-last {
-    background-color: #12ccff;
-    // border: solid 2px #ff5f7a;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ff5f7a;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.detail-name {
-    font-size: 14.5px;
+.detail-list-item-left {
+    font-size: 14px;
+    margin-left: 15px;
 }
 
 .cancle-btn {
@@ -239,4 +231,34 @@ span.field-group-label {
     background-color: #ffffff;
     border-left-width: 0px;
     border-right-width: 0px;
+}
+
+// table.table-list {
+//     border: 1px solid #696969;
+// }
+// table.table-list tr {
+//     width: 100%;
+// }
+table {
+    width: 95%;
+    font-size: 12px;
+    font-family: $body-font-family;
+    font-weight: $body-font-weight;
+    font-style: $body-font-style;
+}
+
+table.table-list td {
+    border: 1px solid #696969;
+}
+
+.td1 {
+    width: 50%;
+}
+
+.td2 {
+    width: 25%;
+}
+
+.td3 {
+    width: 25%
 }
