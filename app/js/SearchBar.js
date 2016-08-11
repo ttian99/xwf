@@ -58,13 +58,17 @@ class SearchBar extends React.Component {
     const input = this.refs.input;
     const value = input.getValue();
     this.setInputValue(value, false);
-    this.changgeTipsPage(false);
+    const needShowTips = !value;
+    this.changgeTipsPage(needShowTips);
   }
   // 提交回调
   handleSubmit = () => {
     console.log('----------- handleSubmit ----------');
-    this.needGetFocus(false);
     const searchValue = this.refs.input.getValue();
+    if (!searchValue) {
+      return;
+    }
+    this.needGetFocus(false);
     this.mockData(searchValue);
     this.setTipsArr(searchValue);
     this.changgeTipsPage(false);
@@ -103,12 +107,16 @@ class SearchBar extends React.Component {
   }
 
   // 保存搜索记录
-  setTipsArr(str) {     
+  setTipsArr(str) { 
     const tipsArr = this.state.tipsArr;
+    for (let i = 0; i < tipsArr.length; i++) {
+      if (str === tipsArr[i]) {
+        console.log('------- item ------ i = ' + i);
+        return;
+      }
+    }
     tipsArr.length >= 4 && tipsArr.pop();
     tipsArr.unshift(str);
-    console.log('----- tipsArr ----');
-    console.log(tipsArr);
     loc.set("tipsArr", tipsArr);
   }
 
