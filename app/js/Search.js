@@ -16,8 +16,8 @@ class Search extends React.Component {
     };
   }
   componentWillMount() {
-    console.log('--------- willMount --------');
-    console.log(this.props);
+    // console.log('--------- willMount --------');
+    // console.log(this.props);
   }
 
   // 默认props

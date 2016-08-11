@@ -27,10 +27,7 @@ class School extends React.Component {
 
   // dom状态的改变
   changePageState = (newState) => {
-    console.log('=======')
-    console.log('this.state.isDetail = ' +this.state.isDetail);
     this.setState({isDetail: newState});
-    console.log('this.state.isDetail = ' +this.state.isDetail);
   }
 
   render() {
