@@ -23,12 +23,12 @@ class SearchTips extends React.Component {
   }
 
   clickItem = (str) => {
-    // const id = event.target.value;
     this.props.setInputValue(str, true);
   }
 
   clickClearItem = () => {
     console.log('------- clear -------- ');
+    this.props.clearHistory();
   }
 
   render() {
@@ -39,22 +39,17 @@ class SearchTips extends React.Component {
           this.state.tipsArr.map((item, i) => {
             const className = (i === 0) ? "search-tips-first" : "search-tips-item"; 
             return(
-              // <p key={i}><span>{item}</span></p>
-              // <Col className="search-tips-name" cols={6}><span>{item}</span></Col>
               <Grid key={i} className={className} collapse={true} bordered={false}>
-                
                 <span onClick={this.clickItem.bind(this, item)} >{item}</span>
               </Grid>
             );
           })
         }
         <Grid className="search-tips-item" collapse={true} bordered={false}>
-                <Icon name="trash"></Icon>&nbsp;&nbsp;<span onClick={this.clickClearItem}>清除历史记录</span>
+                <img src="i/delIcon.png" style={{height:16,width:16}}/>&nbsp;&nbsp;<span onClick={this.clickClearItem}>清除历史记录</span>
         </Grid>
       </List>
       // </Container>
-
-      // <span onClick={(evt, i) => {this.clickItem(evt, i)}} value={item}>{item}</span>
     );
   }
 }

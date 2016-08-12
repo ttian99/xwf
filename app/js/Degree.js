@@ -1,51 +1,42 @@
 import React from 'react';
 import { Container, Field, Grid, Col, Button } from 'amazeui-touch';
 import Logo from './Logo';
+import DegreeSearchPage from './DegreeSearchPage';
+import Search from './Search';
 
 class Degree extends React.Component {
+  constructor(props) {
+    super(props);
+    // Operations usually carried out in componentWillMount go here
+    this.state = {
+      isDetail: false,
+      // haveData: false,  // 是否有详细的数据
+      // schoolList: [],   // 搜索的list
+      searchValue: "",   // 搜索的关键字
+      // searchDate: {},
+    };
+  }
+  
+  static defaultProps = {
+    mode: 'degree'
+  }
+
+  // dom状态的改变
+  changePageState = (newState) => {
+    this.setState({isDetail: newState});
+  }
+
+  changeData(data) {
+    console.log('------- setInputValue ----');
+
+    this.setState({searchValue: data.searchValue});
+  }
+
   render() {
-    return (
-      <Container className="main-search-cnt">
-        <Grid className="main-grid" wrap="wrap">
-          <Col cols={6}>
-            <Logo />
-          </Col>
-          <Col cols={6}>
-            <Field
-              // label="Your Name"
-              // containerClassName="school-search"
-              className="main-search"
-              placeholder="查学位锁定情况"
-            />
-          </Col>
-          <Col cols={2}>
-            <Field
-              type="select"
-              // label="Select"
-              ref="select"
-              defaultValue="m"
-            >
-              <option value="m">Male</option>
-              <option value="f">Female</option>
-            </Field>
-          </Col>
-          <Col cols={2}>
-            <Field
-              type="select"
-              // label="Select"
-              ref="select"
-              defaultValue="m"
-            >
-              <option value="m">Male</option>
-              <option value="f">Female</option>
-            </Field>
-          </Col>
-          <Col cols={2}>
-            <Button amStyle="primary">查询</Button>
-          </Col>
-        </Grid>
-      </Container>
-    );
+    const mainPage = (<DegreeSearchPage {...this.props} onChangePage={this.changePageState.bind(this)} searchValue={this.state.searchValue}/>); 
+    const detailPage = (<Search {...this.props} onChangePage={this.changePageState.bind(this)} onChangeData={this.changeData.bind(this)}/>);
+    const ret = this.state.isDetail ? detailPage  : mainPage; 
+    return ret;
   }
 }
 

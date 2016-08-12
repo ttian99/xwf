@@ -2,15 +2,14 @@ import React from 'react';
 import { Container, Field, Grid, Col, Group, Button, Icon } from 'amazeui-touch';
 import Logo from './Logo';
 
-class Search1 extends React.Component {
+class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     // Operations usually carried out in componentWillMount go here
   }
 
   // 默认props
-  static defaultProps = {
-  }
+  static defaultProps = {}
 
   // 定义参数类型
   static propTypes = {
@@ -65,4 +64,4 @@ class Search1 extends React.Component {
   }
 }
 
-export default Search1;
+export default SearchPage;

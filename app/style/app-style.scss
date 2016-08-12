@@ -48,7 +48,7 @@ $ratchicons-path: "../../node_modules/amazeui-touch/fonts/";
     color: #ff5f7a;
 }
 
-.splash {
+#splash-cnt {
     display: block;
     text-align: center;
     overflow: hidden;
@@ -99,6 +99,7 @@ p.search-label span {
 // search结果提示文字
 p.detail-search-label {
     background-color: #fafafa;
+    margin-top: 5px;
     margin-bottom: 0px;
     font-size: 14px;
     text-align: left;
@@ -159,8 +160,8 @@ p.detail-search-label span {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
-    padding-right: 15px;
-    font-size: 14px;
+    padding-right: 5px;
+    font-size: 12px;
     font-weight: bold;
 }
 
@@ -184,6 +185,10 @@ p.detail-search-label span {
 .detail-list-item-left {
     font-size: 14px;
     margin-left: 15px;
+}
+
+.detail-list-item-middle {
+    margin-left: -10px;
 }
 
 .cancle-btn {
@@ -291,41 +296,6 @@ table.table-list td {
     padding-bottom: 10px;
 }
 
-// .detail-list-item {
-//     border-style: solid;
-//     border-width: 1px;
-//     border-color: #d9d9d9;
-//     padding-top: 10px;
-//     padding-bottom: 10px;
-//     border-top-width: 0px;
-// }
-// .detail-list-item-first {
-//     border-style: solid;
-//     border-width: 1px;
-//     border-color: #d9d9d9;
-//     padding-top: 10px;
-//     padding-bottom: 10px;
-// }
-// .detail-list-item-left {
-//     font-size: 14px;
-//     margin-left: 15px;
-// }
-// .search-tips-cnt {
-//     display: block;
-//     // float: top;
-//     font-size: 12px;
-//     font-family: $body-font-family;
-//     font-weight: $body-font-weight;
-//     font-style: $body-font-style;
-//     margin-top: 4px;
-//     margin-bottom: 4px;
-// }
-
-// .search-tips p {
-//     padding-left: 15px;
-//     border: 0.5px solid #c3c3c3;
-//     padding-top: 8px;
-//     padding-bottom: 8px;
-//     -webkit-margin-before: 0em;
-//     -webkit-margin-after: 0em;
-// }
+select.field {
+  
+}

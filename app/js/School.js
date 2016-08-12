@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { Container, Field, Grid, Col } from 'amazeui-touch';
 import Logo from './Logo';
 import Search from './Search';
-import Search1 from './Search1';
+import SearchPage from './SearchPage';
 
 class School extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class School extends React.Component {
   render() {
     let ret = null;
     const mainSearch = (
-      <Search1 {...this.props} onChangePage={this.changePageState} />
+      <SearchPage {...this.props} onChangePage={this.changePageState} />
     );
     const detailSearch = (
       <Search {...this.props} onChangePage={this.changePageState} />

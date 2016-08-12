@@ -10,6 +10,7 @@ class Logo extends React.Component {
       marginTop: 0.45 * screen.height - logoWidth,
       marginLeft: 'auto',
       marginRight: 'auto',
+      marginBottom: 50,
     };
     return (
       <img src="i/logo.png" style={logoStyle} />

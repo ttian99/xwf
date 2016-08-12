@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container } from 'amazeui-touch';
+import { Container, Grid, Col } from 'amazeui-touch';
 
 class Splash extends React.Component {
   render() {
-    const splashStyle = {
+    const logoStyle = {
       display: 'block',
       textAlign: 'center',
       overflow: 'hidden',
@@ -12,9 +12,16 @@ class Splash extends React.Component {
       marginRight: 'auto',
     };
 
+    const labelStyle = {
+      paddingTop: 80,
+    };
+
     return (
-      <Container id="jtx-cnt">
-        <img className="splash" src="i/app.jpg" style={splashStyle} />
+      <Container id="splash-cnt">
+        <Grid style={logoStyle}>
+          <Col><img src="i/logo.png" /></Col>
+          <Col><img src="i/label.png" style={labelStyle} /></Col>
+        </Grid>
       </Container>
     );
   }
