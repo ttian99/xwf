@@ -14,8 +14,8 @@ class DegreeSearchPage extends React.Component {
       haveData: false,  // 是否有详细的数据
       dataList: [],   // 搜索的list
       // searchValue: "",   // 搜索的关键字
-      ridgepoleList: [], // 栋数
-      roomList: [],      // 房间号
+      // ridgepoleList: [], // 栋数
+      // roomList: [],      // 房间号
     };
     // this.searchValue = this.props.searchValue;
   }
@@ -23,11 +23,17 @@ class DegreeSearchPage extends React.Component {
   static defaultProps = {
     mode: 'degree',
     searchValue: "",
+    ridgepoleList: [], // 栋数
+    roomList: [],      // 房间号
   }
 
   handleClick() {
     console.log('----------- click ----------');
     this.props.onChangePage(true);
+  }
+
+  handleSearch() {
+    console.log('---- search -------');
   }
 
   render() {
@@ -53,10 +59,14 @@ class DegreeSearchPage extends React.Component {
               type="select"
               // label="Select"
               ref="rpSel"
-              defaultValue={[]}
+              defaultValue="default"
             >
-              <option value="m">Male</option>
-              <option value="f">Female</option>
+              <option value="default" style={{display: "none"}}>栋数</option>
+             {
+                this.props.roomList.map((item, i) => {
+                  return (<option value=""></option>)
+                })
+              } 
             </Field>
           </Col>
           <Col cols={2}>
@@ -64,14 +74,18 @@ class DegreeSearchPage extends React.Component {
               type="select"
               // label="Select"
               ref="roomSel"
-              defaultValue={[]}
+              defaultValue="default"
             >
-              <option value="m">Male</option>
-              <option value="f">Female</option>
+              <option value="default" style={{display: "none"}}>房号</option>
+              {
+                this.props.ridgepoleList.map((item, i) => {
+                  return (<option value=""></option>)
+                })
+              } 
             </Field>
           </Col>
           <Col cols={2}>
-            <img src="i/searchBtn.png" style={{height: 44, width: 107.98}}/>
+            <img src="i/searchBtn.png" style={{height: 44, width: 107.98}} onClick={this.handleSearch.bind(this)}/>
           </Col>
         </Grid>
       </Container>

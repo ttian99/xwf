@@ -13,10 +13,12 @@ class Degree extends React.Component {
       // haveData: false,  // 是否有详细的数据
       // schoolList: [],   // 搜索的list
       searchValue: "",   // 搜索的关键字
+      ridgepoleList: [], // 栋数
+      roomList: [],      // 房间号
       // searchDate: {},
     };
   }
-  
+
   static defaultProps = {
     mode: 'degree'
   }
@@ -30,6 +32,7 @@ class Degree extends React.Component {
     console.log('------- setInputValue ----');
 
     this.setState({searchValue: data.searchValue});
+    this.setState({});
   }
 
   render() {
