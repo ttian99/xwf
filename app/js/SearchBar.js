@@ -145,8 +145,12 @@ class SearchBar extends React.Component {
             searchValue: searchValue
         }
         if (this.props.mode === "degree") {
-          this.props.onChangePage(false);
           console.log("----------------- degree ------------");
+          
+          data.ridgepoleList = mock.ridgepoleList;
+          data.roomList = mock.roomList;
+
+          this.props.onChangePage(false);
           this.props.onChangeData(data);
         } else {
           this.props.onChangeResult(data);
@@ -190,6 +194,7 @@ class SearchBar extends React.Component {
             placeholder = { defaultPlaceholder }
             value = { this.state.value }
             // defaultValue={this.state.searchValue}
+            // btnBefore= { <img src="i/searchIcon.png" /> }
             labelAfter = { clearBtn }
             btnAfter = { cancleBtn }
             autoFocus = { true } // 自动设置为焦点

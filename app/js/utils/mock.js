@@ -17,4 +17,13 @@ mock.degree = [
   { name: '招商海月一期', isLock: true },
 ];
 
+mock.ridgepoleList = ['1栋', '2栋', '3栋', '4栋', '5栋', '6栋'];
+
+mock.roomList = ['1号', '2号', '3号', '4号', '5号', '6号'];
+
+mock.degreeResult = {
+  pSchool: { name: '', year: '' },
+  mSchool: { name: '', year: '' },
+};
+
 export default mock;

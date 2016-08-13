@@ -5,19 +5,17 @@ import Logo from './Logo';
 import Fetch from './utils/Fetch';
 import SearchBar from './SearchBar';
 import ResultList from './ResultList';
+import DegreeResult from './DegreeResult';
 
 class DegreeSearchPage extends React.Component {
   constructor(props) {
     super(props);
     // Operations usually carried out in componentWillMount go here
     this.state = {
-      haveData: false,  // 是否有详细的数据
-      dataList: [],   // 搜索的list
-      // searchValue: "",   // 搜索的关键字
-      // ridgepoleList: [], // 栋数
-      // roomList: [],      // 房间号
+      title: "", // 结果页面的标题
+      curRidgepole: "", // 当前选择的栋数
+      curRoom: "",  // 当前选择的房间号
     };
-    // this.searchValue = this.props.searchValue;
   }
   
   static defaultProps = {
@@ -25,6 +23,7 @@ class DegreeSearchPage extends React.Component {
     searchValue: "",
     ridgepoleList: [], // 栋数
     roomList: [],      // 房间号
+    showResult: false,
   }
 
   handleClick() {
@@ -34,13 +33,38 @@ class DegreeSearchPage extends React.Component {
 
   handleSearch() {
     console.log('---- search -------');
+    this.getTitle();
+  }
+
+  changeShowResult(newState) {
+    this.setState({ showResult: newState });
+  }
+
+  getTitle() {
+    const searchValue = this.props.searchValue;
+    const curRidgepole = this.refs.rpSel.getValue();
+    const curRoom = this.refs.roomSel.getValue();
+    const title = searchValue + curRidgepole + curRoom;
+    if (!searchValue) {
+      return;
+    }
+    if (curRoom === "default" || curRidgepole === "default") {
+      return;
+    }
+    console.log(!searchValue, !curRidgepole, !curRoom);
+    this.setState({ 
+      title: title,
+      curRidgepole: curRidgepole,
+      curRoom: curRoom, 
+    });
+    this.changeShowResult(true);
   }
 
   render() {
     const label = this.props.searchValue || "查学位锁定情况";
-    return (
-      <Container className="main-search-cnt">
-        <Grid className="main-grid" wrap="wrap">
+    const mainPage = (
+      <Container className="degree-search-page-cnt">
+       <Grid className="degree-search-page-grid" wrap="wrap">
           <Col cols={6}>
             <Logo />
           </Col>
@@ -49,7 +73,7 @@ class DegreeSearchPage extends React.Component {
               // label="Your Name"
               // containerClassName="school-search"
               ref="input"
-              className="main-search"
+              className="degree-search-page"
               placeholder={label}
               onClick={this.handleClick.bind(this)}
             />
@@ -61,10 +85,10 @@ class DegreeSearchPage extends React.Component {
               ref="rpSel"
               defaultValue="default"
             >
-              <option value="default" style={{display: "none"}}>栋数</option>
+              <option value="default" style={{display: "none"}}>{this.state.curRidgepole || '栋数'}</option>
              {
                 this.props.roomList.map((item, i) => {
-                  return (<option value=""></option>)
+                  return (<option key={i} value={item}>{item}</option>)
                 })
               } 
             </Field>
@@ -76,10 +100,10 @@ class DegreeSearchPage extends React.Component {
               ref="roomSel"
               defaultValue="default"
             >
-              <option value="default" style={{display: "none"}}>房号</option>
+              <option value="default" style={{display: "none"}}>{this.state.curRoom || '房号'}</option>
               {
                 this.props.ridgepoleList.map((item, i) => {
-                  return (<option value=""></option>)
+                  return (<option key={i} value={item}>{item}</option>)
                 })
               } 
             </Field>
@@ -88,8 +112,19 @@ class DegreeSearchPage extends React.Component {
             <img src="i/searchBtn.png" style={{height: 44, width: 107.98}} onClick={this.handleSearch.bind(this)}/>
           </Col>
         </Grid>
+        </Container>
+    );
+    const resultPage = (
+      <Container>
+        <DegreeResult {...this.props} title={this.state.title} onChangeShowResult={this.changeShowResult.bind(this)}/>
       </Container>
     );
+
+    if (this.state.showResult) {
+      return (resultPage);
+    } else {
+      return (mainPage)
+    }
   }
 }
 

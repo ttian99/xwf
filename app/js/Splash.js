@@ -3,24 +3,20 @@ import { Container, Grid, Col } from 'amazeui-touch';
 
 class Splash extends React.Component {
   render() {
-    const logoStyle = {
+    const gridStyle = {
+      marginTop: screen.height / 2 - 141,
       display: 'block',
       textAlign: 'center',
       overflow: 'hidden',
-      marginTop: screen.height / 2 - 210,
       marginLeft: 'auto',
       marginRight: 'auto',
     };
 
-    const labelStyle = {
-      paddingTop: 80,
-    };
-
     return (
-      <Container id="splash-cnt">
-        <Grid style={logoStyle}>
-          <Col><img src="i/logo.png" /></Col>
-          <Col><img src="i/label.png" style={labelStyle} /></Col>
+      <Container className="splash-cnt">
+        <Grid className="splash-grid" style={gridStyle}>
+          <Col cols={6}><img className="splash-logo" src="i/logo.png" /></Col>
+          <Col cols={6}><img className="splash-label" src="i/label.png" /></Col>
         </Grid>
       </Container>
     );

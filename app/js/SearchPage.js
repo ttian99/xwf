@@ -39,8 +39,8 @@ class SearchPage extends React.Component {
       defaultTxt.labelAfter =  "找到对口小学、初中"
     }
     const ret = (
-       <Container className="main-search-cnt">
-        <Grid className="main-grid" wrap="wrap">
+       <Container className="search-page-cnt">
+        <Grid className="search-page-grid" wrap="wrap">
           <Col cols={6}>
             <Logo />
           </Col>
@@ -48,13 +48,13 @@ class SearchPage extends React.Component {
             <Field
               // label="Your Name"
               // containerClassName="school-search"
-              className="main-search"
+              className="search-page"
               placeholder={defaultTxt.placeholder}
               onClick={this.handleClick}
             />
           </Col>
           <Col cols={6}>
-            <p className="search-label">{defaultTxt.labelBefore}<span>{defaultTxt.labelMid}</span>{defaultTxt.labelAfter}</p>
+            <p className="search-page-label">{defaultTxt.labelBefore}<span>{defaultTxt.labelMid}</span>{defaultTxt.labelAfter}</p>
           </Col>
         </Grid>
       </Container>

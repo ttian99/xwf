@@ -15,6 +15,7 @@ import '../i/touch/ms-touch-icon-144x144-precomposed.png';
 
 import '../i/clearIcon.png';
 import '../i/delIcon.png';
+import '../i/searchIcon.png';
 import '../i/searchBtn.png';
 
 // load Amaze UI Touch style
@@ -23,7 +24,11 @@ import '../i/searchBtn.png';
 // import 'amazeui-touch/scss/amazeui.touch.scss'
 
 // load style
+import '../style/splash-style.scss';
 import '../style/app-style.scss';
+import '../style/searchTips-style.scss';
+import '../style/searchPage-style.scss';
+import '../style/degreeSearchPage-style.scss';
 
 // load App
 // import './App';

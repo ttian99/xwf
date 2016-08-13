@@ -29,6 +29,27 @@ $ratchicons-path: "../../node_modules/amazeui-touch/fonts/";
 
 /**-- 自定义的样式在下面 --**/
 
+// 选择框的字体
+select.field {
+    font-family: $body-font-family;
+    font-weight: $body-font-weight;
+    font-style: $body-font-style;
+}
+
+// 输入框样式
+input {
+    font-family: $body-font-family;
+    font-weight: $body-font-weight;
+    font-style: $body-font-style;
+}
+
+// 段落的文字样式
+p {
+    font-family: $body-font-family;
+    font-weight: $body-font-weight;
+    font-style: $body-font-style;
+}
+
 .root {
     background-color: #ffffff;
 }
@@ -48,13 +69,6 @@ $ratchicons-path: "../../node_modules/amazeui-touch/fonts/";
     color: #ff5f7a;
 }
 
-#splash-cnt {
-    display: block;
-    text-align: center;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
 // 主container的样式
 #main-cnt {
     background-color: #fafafa;
@@ -63,37 +77,6 @@ $ratchicons-path: "../../node_modules/amazeui-touch/fonts/";
 // 导航栏
 .main-tabbar {
     background-color: #ffffff;
-}
-
-.main-search-cnt {
-    text-align: center;
-}
-
-// 输入框样式
-input {
-    font-family: $body-font-family;
-    font-weight: $body-font-weight;
-    font-style: $body-font-style;
-}
-
-input.main-search.field {
-    color: #d9d9d9;
-    margin-bottom: 5px;
-    outline-color: #c3c3c3;
-}
-
-// search1搜索框提示文字
-p.search-label {
-    font-size: 14px;
-    padding-left: 15px;
-    margin-top: 5px;
-    text-align: left;
-    color: #c3c3c3;
-}
-
-// search1搜索框<span>提示文字
-p.search-label span {
-    color: #696969;
 }
 
 // search结果提示文字
@@ -113,11 +96,13 @@ p.detail-search-label span {
     color: #ff5f7a;
 }
 
-.main-grid {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
+// .main-grid {
+//     padding-left: 15px;
+//     padding-right: 15px;
+// }
+// .main-search-cnt {
+//     text-align: center;
+// }
 .detail-search-cnt {
     margin-left: 5px;
     margin-right: 5px;
@@ -204,9 +189,9 @@ p.detail-search-label span {
 
 p.cancle-btn-label {
     color: #d9d9d9;
-    font-family: $body-font-family;
+    // font-family: $body-font-family;
     // font-weight: $body-font-weight;
-    font-style: $body-font-style;
+    // font-style: $body-font-style;
     font-size: 16px;
     margin-top: 0px;
     border-right-width: 0px;
@@ -238,64 +223,24 @@ span.field-group-label {
     border-right-width: 0px;
 }
 
-// table.table-list {
-//     border: 1px solid #696969;
-// }
-// table.table-list tr {
-//     width: 100%;
-// }
-table {
-    width: 95%;
-    font-size: 12px;
-    font-family: $body-font-family;
-    font-weight: $body-font-weight;
-    font-style: $body-font-style;
-}
-
-table.table-list td {
-    border: 1px solid #696969;
-}
-
-.td1 {
-    width: 50%;
-}
-
-.td2 {
-    width: 25%;
-}
-
-.td3 {
-    width: 25%
-}
-
 .search-bar {
     margin-bottom: 0px;
 }
 
-.search-tips {
-    margin-top: 4px;
-    margin-bottom: 4px;
+.degree-result-grid {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 12px;
 }
 
-.search-tips-item {
-    padding-left: 15px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #d9d9d9;
+.degree-result-grid.g.g-collapse {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-top-width: 0px;
+    // height: 30px;
+    // background-color: #f12f11;
+    font-size: 12px;
 }
 
-.search-tips-first {
-    padding-left: 15px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #d9d9d9;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-select.field {
-  
+.leftnav-back-btn {
+    color: #000000;
 }

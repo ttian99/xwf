@@ -9,13 +9,13 @@ class Degree extends React.Component {
     super(props);
     // Operations usually carried out in componentWillMount go here
     this.state = {
-      isDetail: false,
+      isSearch: false,
       // haveData: false,  // 是否有详细的数据
       // schoolList: [],   // 搜索的list
       searchValue: "",   // 搜索的关键字
       ridgepoleList: [], // 栋数
       roomList: [],      // 房间号
-      // searchDate: {},
+      degreeResult: {},
     };
   }
 
@@ -25,20 +25,29 @@ class Degree extends React.Component {
 
   // dom状态的改变
   changePageState = (newState) => {
-    this.setState({isDetail: newState});
+    this.setState({isSearch: newState});
   }
 
   changeData(data) {
     console.log('------- setInputValue ----');
 
     this.setState({searchValue: data.searchValue});
-    this.setState({});
+    this.setState({ridgepoleList: data.ridgepoleList});
+    this.setState({roomList: data.roomList});
   }
 
   render() {
-    const mainPage = (<DegreeSearchPage {...this.props} onChangePage={this.changePageState.bind(this)} searchValue={this.state.searchValue}/>); 
-    const detailPage = (<Search {...this.props} onChangePage={this.changePageState.bind(this)} onChangeData={this.changeData.bind(this)}/>);
-    const ret = this.state.isDetail ? detailPage  : mainPage; 
+    const mainPage = (
+      <DegreeSearchPage 
+        {...this.props}
+        onChangePage={this.changePageState.bind(this) }
+        searchValue={this.state.searchValue}
+        ridgepoleList={this.state.ridgepoleList}
+        roomList={this.state.roomList}
+      />
+    ); 
+    const searchPage = (<Search {...this.props} onChangePage={this.changePageState.bind(this)} onChangeData={this.changeData.bind(this)}/>);
+    const ret = this.state.isSearch ? searchPage  : mainPage; 
     return ret;
   }
 }
