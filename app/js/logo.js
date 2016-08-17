@@ -2,7 +2,7 @@ import React from 'react';
 
 class Logo extends React.Component {
   render() {
-    const logoWidth = 101;
+    const logoWidth = 135;
     const logoStyle = {
       height: 101,
       width: 85,

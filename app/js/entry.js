@@ -29,6 +29,7 @@ import '../style/app-style.scss';
 import '../style/searchTips-style.scss';
 import '../style/searchPage-style.scss';
 import '../style/degreeSearchPage-style.scss';
+import '../style/degreeResult-style.scss';
 
 // load App
 // import './App';

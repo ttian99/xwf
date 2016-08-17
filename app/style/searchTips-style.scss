@@ -1,6 +1,13 @@
+.search-tips-cnt {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+
 .search-tips {
     margin-top: 4px;
     margin-bottom: 4px;
+    margin-right: 10px;
 }
 
 .search-tips-item {

@@ -15,6 +15,7 @@ class DegreeSearchPage extends React.Component {
       title: "", // 结果页面的标题
       curRidgepole: "", // 当前选择的栋数
       curRoom: "",  // 当前选择的房间号
+      haveValue: false,
     };
   }
   
@@ -34,6 +35,12 @@ class DegreeSearchPage extends React.Component {
   handleSearch() {
     console.log('---- search -------');
     this.getTitle();
+  }
+
+  handleChange() {}
+  
+  changeValue(value) {
+    this.refs.input.value = this.props.searchValue;
   }
 
   changeShowResult(newState) {
@@ -75,6 +82,8 @@ class DegreeSearchPage extends React.Component {
               ref="input"
               className="degree-search-page"
               placeholder={label}
+              value={this.props.searchValue}
+              onChange={this.handleChange.bind(this)}
               onClick={this.handleClick.bind(this)}
             />
           </Col>
@@ -109,7 +118,7 @@ class DegreeSearchPage extends React.Component {
             </Field>
           </Col>
           <Col cols={2}>
-            <img src="i/searchBtn.png" style={{height: 44, width: 107.98}} onClick={this.handleSearch.bind(this)}/>
+            <img src="i/searchBtn.png" style={{height: 47, width: 107.98}} onClick={this.handleSearch.bind(this)}/>
           </Col>
         </Grid>
         </Container>

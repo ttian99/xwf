@@ -50,18 +50,41 @@ p {
     font-style: $body-font-style;
 }
 
+// 设置默认文字的颜色
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+color: #d9d9d9; 
+} 
+input:-moz-placeholder, textarea:-moz-placeholder { 
+color: #d9d9d9; 
+} 
+input::-moz-placeholder, textarea::-moz-placeholder { 
+color: #d9d9d9; 
+} 
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+color: #d9d9d9; 
+} 
+
 .root {
     background-color: #ffffff;
 }
 
 .tabbar {
     background-color: #ffffff;
-    height: 3.5625rem;
+    // height: 3.5625rem;
+    height: 4rem;
     padding: 0 1rem;
     padding-top: 0px;
     padding-right: 0rem;
     padding-bottom: 0px;
     padding-left: 0rem;
+}
+
+.icon ~ .tabbar-label {
+    font-size: 0.825rem;
+}
+
+span.tabbar-label {
+    font-size: 16px;
 }
 
 .tabbar > .active,
@@ -88,6 +111,7 @@ p.detail-search-label {
     text-align: left;
     color: #c3c3c3;
     padding-left: 15px;
+    padding-right: 15px;
 }
 
 // search结果<span>提示文字
@@ -103,6 +127,11 @@ p.detail-search-label span {
 // .main-search-cnt {
 //     text-align: center;
 // }
+
+ .search-bar {
+    border: 1px solid #999999;
+}
+
 .detail-search-cnt {
     margin-left: 5px;
     margin-right: 5px;
@@ -112,13 +141,9 @@ p.detail-search-label span {
 
 .detail-search.field {
     color: #d9d9d9;
-    border-right-width: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
-    outline: none;
-    outline-color: none;
-    outline-style: none;
-    outline-width: none;
+    border-width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 // .detail-list-cnt {
@@ -178,20 +203,13 @@ p.detail-search-label span {
 
 .cancle-btn {
     background-color: #ffffff;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.clear-btn {
-    background-color: #ffffff;
-    // display: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-width: 0px;
 }
 
 p.cancle-btn-label {
-    color: #d9d9d9;
-    // font-family: $body-font-family;
-    // font-weight: $body-font-weight;
-    // font-style: $body-font-style;
+    color: #222222;
     font-size: 16px;
     margin-top: 0px;
     border-right-width: 0px;
@@ -219,28 +237,11 @@ p.cancle-btn-label {
 
 span.field-group-label {
     background-color: #ffffff;
-    border-left-width: 0px;
-    border-right-width: 0px;
+    border-width: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-.search-bar {
+.search-bar-cnt {
     margin-bottom: 0px;
-}
-
-.degree-result-grid {
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 12px;
-}
-
-.degree-result-grid.g.g-collapse {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    // height: 30px;
-    // background-color: #f12f11;
-    font-size: 12px;
-}
-
-.leftnav-back-btn {
-    color: #000000;
 }

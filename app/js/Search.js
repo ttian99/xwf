@@ -89,7 +89,7 @@ class Search extends React.Component {
     if (this.state.haveData) {
       page =  (
         <Container className="detail-search-cnt" scrollable={true}>
-              <SearchBar {...this.props} onChangeResult={this.changeResultState}/>
+              <SearchBar {...this.props} onChangeResult={this.changeResultState.bind(this)}/>
               {header}
               <ResultList {...this.props} schoolList={this.state.schoolList}/>
         </Container>  
@@ -97,7 +97,7 @@ class Search extends React.Component {
     } else {
       page = (
         <Container className="detail-search-cnt" scrollable={true}>
-              <SearchBar {...this.props} onChangeResult={this.changeResultState}/>
+              <SearchBar {...this.props} onChangeResult={this.changeResultState.bind(this)}/>
         </Container>
       ) 
     }
@@ -106,61 +106,3 @@ class Search extends React.Component {
 }
 
 export default Search;
-
-
-
-    // this.changeSchoolList();
-    // let defaultPlaceholder = "";
-    // if (this.props.mode === "school") {
-    //   defaultPlaceholder = "请输入学校关键字"
-    // } else if (this.props.mode === "district") {
-    //   defaultPlaceholder = "请输入楼盘全名"
-    // }
-    // // 取消按钮
-    // const cancleBtn = (
-    //   <Button className="cancle-btn" amStyle="">
-    //     <p className="cancle-btn-label" onClick={this.handleCancleBtn}>取消</p>
-    //   </Button>
-    // );
-    // // 清除内容按钮
-    // const clearBtn = (
-    //   <Icon name="close" className="clear-btn" onClick={this.handleClearBtn} />
-    // );
-    // // 搜索框
-    // const input = (
-    //   <Field
-    //       id="detail-search"
-    //       className="detail-search"
-    //       placeholder="请输入"
-    //       labelAfter={clearBtn}
-    //       btnAfter={cancleBtn}
-    //       autoFocus={true}             // 自动设置为焦点
-    //       onBlur={this.handleBlur}        // 失去焦点
-    //       onInput={this.handleInput}   // 输入文字
-    //       onChange={this.handleChange} // value变化监听
-    //       onSubmit={this.handleSubmit} // 提交表单
-    //       onKeyUp={this.handleKeyUp}   // 监听键盘的键抬起
-    //       />
-    // );
-
-
-
-    // const detail = (
-      //   <Container className="detail-list-cnt" scrollable={true}>
-      //   <List className="detail-list">
-      //     {
-      //        /* 遍历数据 */
-      //       this.props.schoolList.map((item, i) => {
-      //           return (
-      //             <Grid className="detail-list-item" collapse={true} bordered={false}>
-      //               <Col className="detail-name" cols={3}><span>{item.name + ''}</span></Col>
-      //               <Col cols={1.5}><span>{"¥" + item.price}</span></Col>
-      //               <Col cols={1.5}><span>{item.year + ''}</span></Col>
-      //             </Grid>
-      //           );
-      //       })
-      //     }
-      //   </List>
-      // </Container>
-    // );
-    

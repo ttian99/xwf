@@ -1,0 +1,41 @@
+.degree-result-cnt {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.leftnav-back-btn {
+    color: #000000;
+}
+
+.degree-result-navbar {
+   color: #ff5f7a;
+   font-weight: lighter;
+   background-color: #fbfbfb;
+   height: 2.50rem;
+   border-width: 0px;
+   font-size: 15px;
+}
+
+.degree-result-navbar:after {
+    border-bottom: 0px solid #d8d8d8;
+}
+
+
+.degree-result-grid-head {
+  //  margin-top: 10px;
+   margin-bottom: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   background-color: #DDDDDD;
+   border-width: 0px;
+   border-top-width: 0px;
+}
+
+.degree-result-grid {
+   background-color: #ffffff;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   border: 1px solid #DDDDDD;
+   font-size: 15px;
+}

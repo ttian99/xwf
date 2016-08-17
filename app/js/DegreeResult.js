@@ -30,19 +30,21 @@ class DegreeResult extends React.Component {
 
   render() {
     return(
-      <Container>
-        <NavBar title={this.props.title} leftNav={[{className: "leftnav-back-btn", onClick: this.handleBack.bind(this), title: '返回', icon: 'left-nav'}]}/>
-        <Grid className="degree-result-grid" collapse={true} bordered={false}>
-          <Col cols={2}>小学</Col>
-          <Col cols={1}>锁定年限</Col>
-          <Col cols={2}>初中</Col>
-          <Col cols={1}>锁定年限</Col>
+      <Container className="degree-result-cnt">
+        <NavBar className="degree-result-navbar" title={this.props.title} leftNav={[{className: "leftnav-back-btn", onClick: this.handleBack.bind(this), title: '返回', icon: 'left-nav'}]}/>
+        
+        <Grid className="degree-result-grid-head" collapse={false} bordered={false}>
+            <Col cols={4}><span>对口学校</span></Col>
+            <Col cols={2}><span>锁定年限</span></Col>
         </Grid>
-        <Grid className="degree-result-grid" collapse={true} bordered={false}>
-          <Col cols={2}>望海小学</Col>
-          <Col cols={1}>2015年</Col>
-          <Col cols={2}>蛇口中学</Col>
-          <Col cols={1}>未锁定</Col>
+
+        <Grid className="degree-result-grid" collapse={false} bordered={false}>
+          <Col cols={4}><span>望海小学sfsdfsfsfsd</span></Col>
+          <Col cols={2}><span>2015年</span></Col>
+        </Grid>
+        <Grid  className="degree-result-grid" collapse={false} bordered={false}>
+          <Col cols={4}><span>蛇口中学sdfs</span></Col>
+          <Col cols={2}><span>未锁定</span></Col>
         </Grid>
       </Container>
     );
