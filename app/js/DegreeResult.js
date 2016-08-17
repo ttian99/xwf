@@ -39,11 +39,11 @@ class DegreeResult extends React.Component {
         </Grid>
 
         <Grid className="degree-result-grid" collapse={false} bordered={false}>
-          <Col cols={4}><span>望海小学sfsdfsfsfsd</span></Col>
+          <Col cols={4}><span>望海小学</span></Col>
           <Col cols={2}><span>2015年</span></Col>
         </Grid>
         <Grid  className="degree-result-grid" collapse={false} bordered={false}>
-          <Col cols={4}><span>蛇口中学sdfs</span></Col>
+          <Col cols={4}><span>蛇口中学</span></Col>
           <Col cols={2}><span>未锁定</span></Col>
         </Grid>
       </Container>

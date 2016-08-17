@@ -24,7 +24,7 @@ class SearchPage extends React.Component {
   render() {
     let defaultTxt = {
       placeholder: "",
-      labelBefore: "例：输入“",
+      labelBefore: "例：输入",
       labelMid: "",
       labelAfter: "",
     };
@@ -32,7 +32,7 @@ class SearchPage extends React.Component {
     if (this.props.mode === "school") {
       defaultTxt.placeholder = "请输入学校关键字"
       defaultTxt.labelMid = "深圳中学"
-      defaultTxt.labelAfter =  "”找到对口学区楼盘"
+      defaultTxt.labelAfter =  "找到对口学区楼盘"
     } else if (this.props.mode === "district") {
       defaultTxt.placeholder = "请输入楼盘全名"
       defaultTxt.labelMid = "东海花园"

@@ -4,7 +4,7 @@ import { Container, Grid, Col } from 'amazeui-touch';
 class Splash extends React.Component {
   render() {
     const gridStyle = {
-      marginTop: screen.height / 2 - 141,
+      marginTop: '50%',
       display: 'block',
       textAlign: 'center',
       overflow: 'hidden',

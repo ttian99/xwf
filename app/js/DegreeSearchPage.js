@@ -71,7 +71,7 @@ class DegreeSearchPage extends React.Component {
     const label = this.props.searchValue || "查学位锁定情况";
     const mainPage = (
       <Container className="degree-search-page-cnt">
-       <Grid className="degree-search-page-grid" wrap="wrap">
+       <Grid className="degree-search-page-grid" wrap="wrap" collapse={true}>
           <Col cols={6}>
             <Logo />
           </Col>
@@ -89,6 +89,7 @@ class DegreeSearchPage extends React.Component {
           </Col>
           <Col cols={2}>
             <Field
+              className="degree-search-page-select"
               type="select"
               // label="Select"
               ref="rpSel"
@@ -104,6 +105,7 @@ class DegreeSearchPage extends React.Component {
           </Col>
           <Col cols={2}>
             <Field
+              className="degree-search-page-select"
               type="select"
               // label="Select"
               ref="roomSel"
@@ -118,7 +120,7 @@ class DegreeSearchPage extends React.Component {
             </Field>
           </Col>
           <Col cols={2}>
-            <img src="i/searchBtn.png" style={{height: 47, width: 107.98}} onClick={this.handleSearch.bind(this)}/>
+            <img src="i/searchBtn.png" style={{height: 44, width: 90}} onClick={this.handleSearch.bind(this)}/>
           </Col>
         </Grid>
         </Container>

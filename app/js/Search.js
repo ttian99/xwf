@@ -88,7 +88,7 @@ class Search extends React.Component {
     let page;
     if (this.state.haveData) {
       page =  (
-        <Container className="detail-search-cnt" scrollable={true}>
+        <Container className="detail-search-cnt" scrollable={false}>
               <SearchBar {...this.props} onChangeResult={this.changeResultState.bind(this)}/>
               {header}
               <ResultList {...this.props} schoolList={this.state.schoolList}/>
@@ -96,7 +96,7 @@ class Search extends React.Component {
       )
     } else {
       page = (
-        <Container className="detail-search-cnt" scrollable={true}>
+        <Container className="detail-search-cnt" scrollable={false}>
               <SearchBar {...this.props} onChangeResult={this.changeResultState.bind(this)}/>
         </Container>
       ) 

@@ -13,6 +13,7 @@ class App extends React.Component {
     const {router} = this.context;
     // const transition = children.props.transition || 'sfr';
 
+    // {alert("screen.height = " + screen.height )}
     return (
       
       <Container direction="column" id="main-cnt">
@@ -41,7 +42,7 @@ class App extends React.Component {
           />
           <TabBar.Item
             component={Link}
-            icon="info"
+            icon="list"
             title="小区查学校"
             // badge="404"
             // @see https://github.com/reactjs/react-router/blob/0616f6e14337f68d3ce9f758aa73f83a255d6db3/docs/API.md#isactivepathorloc-indexonly
@@ -51,7 +52,7 @@ class App extends React.Component {
           />
           <TabBar.Item
             component={Link}
-            icon="list"
+            icon="info"
             title="查学位锁定"
             // badge="404"
             // @see https://github.com/reactjs/react-router/blob/0616f6e14337f68d3ce9f758aa73f83a255d6db3/docs/API.md#isactivepathorloc-indexonly
