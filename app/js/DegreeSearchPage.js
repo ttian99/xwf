@@ -120,14 +120,17 @@ class DegreeSearchPage extends React.Component {
             </Field>
           </Col>
           <Col cols={2}>
-            <img src="i/searchBtn.png" style={{height: 44, width: 90}} onClick={this.handleSearch.bind(this)}/>
+            <img src="i/searchBtn.png" 
+              // style={{height: 44, width: 90}}
+              className="degree-search-page-searchBtn" 
+              onClick={this.handleSearch.bind(this)}/>
           </Col>
         </Grid>
         </Container>
     );
     const resultPage = (
       <Container>
-        <DegreeResult {...this.props} title={this.state.title} onChangeShowResult={this.changeShowResult.bind(this)}/>
+        <DegreeResult {...this.props} title={this.state.title} onChangeShowResult={this.changeShowResult.bind(this)} />
       </Container>
     );
 

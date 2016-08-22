@@ -1,69 +1,103 @@
 /* global ActiveXObject */
+import querystring from 'querystring';
+import cfg from '../config/cfg';
+
+class Response {
+  constructor(body, opts) {
+    this.body = body;
+    this.status = opts.status;
+    this.ok = this.status >= 200 && this.status < 300;
+    this.spendTime = opts.spendTime;
+  }
+
+  json() {
+    return JSON.parse(this.body);
+  }
+}
+
+function getXHR() {
+  return (window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject('MSXML2.XMLHTTP'));
+}
 
 /**
- * 创建xhr对象
- * @return {Objectx} xhr
+ * options:
+ *   method - 'GET', 'POST'
+ *   body - POST的时候传入的是object
+ *   timeout - 有这个参数的时候才会有超时机制
  */
-function getXHR() {
-  let xhr;
-  try {
-    xhr = new XMLHttpRequest();
-  } catch (e) {
-    const IEXHRVers = ['Msxml3.XMLHTTP', 'Msxml2.XMLHTTP', 'Microsoft.XMLHTTP'];
-    for (let i = 0, len = IEXHRVers.length; i < len; i++) {
-      try {
-        xhr = new ActiveXObject(IEXHRVers[i]);
-      } catch (ee) {
-        continue;
+function fetchFuc(url, { method = 'GET', timeout = null, body = null } = {}) {
+  return new Promise((resolve, reject) => {
+    const xhr = getXHR();
+    xhr.open(method, url, true);
+
+    const startTime = new Date().valueOf();
+    let reqTimeout = null;
+    if (timeout) {
+      reqTimeout = setTimeout(() => {
+        xhr.abort();
+        reject(new Error('network_timeout'));
+      }, timeout);
+    }
+
+    function onReady() {
+      if (xhr.readyState === 4) {
+        clearTimeout(reqTimeout);
+        if (xhr.status === 200) {
+          const spendTime = new Date().valueOf() - startTime;
+          resolve(new Response(xhr.responseText, { status: xhr.status, spendTime }));
+        } else {
+          reject(new Error('request to ' + url + ' failed, status: ' + xhr.status));
+        }
       }
     }
-  }
-  return xhr;
+
+    if (/msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent)) {
+      // IE-specific logic here
+      xhr.setRequestHeader('Accept-Charset', 'utf-8');
+      xhr.onreadystatechange = onReady;
+    } else {
+      if (xhr.overrideMimeType) {
+        xhr.overrideMimeType('text\/plain; charset=utf-8');
+      }
+      xhr.onload = onReady;
+    }
+
+    if (method === 'GET') {
+      xhr.send();
+    } else if (method === 'POST') {
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      const data = querystring.stringify(body);
+      xhr.send(data);
+    }
+  });
 }
 
-function requestFunc(method = 'GET', body) {
-  console.log('------- requestFunc ----------');
+function fetch(gain, cb) {
+  if (!gain) {
+    console.error('gain is a null!');
+    return;
+  }
+  const dt = {};
+  dt.method = 'POST';
+  dt.body = gain;
+  dt.timeout = gain.timeout || 10000;
+  fetchFuc(cfg.svrUrl, dt).then(response => {
+    if (cb) {
+      const result = response.json();
+      if (Number(result.code) !== 0) {
+        cb(result.msg, result);
+      } else {
+        cb(null, result);
+      }
+    }
+  }).catch(err => {
+    console.error(' err : ' + err);
+    const er = '' + err;
+    if (cb) {
+      cb(er);
+    }
+  });
 }
 
-/**
-  * 第一个参数是请求方式,一般用get与post方法,与form标签的method类似
-  * 第二个参数是请求的URL
-  * 第三个参数是请求是同步进行还是异步进行,true表示异步
-  * 调用了open方法仅仅是传递了参数而已
-  * */
 
-exports.get = (url) => {
-  console.log('----- get ---------');
-
-  // 创建xhr对象
-  const xhr = getXHR();
-  // 建立与Server主机的链接
-  xhr.open('get', url, true);
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      alert(xhr.responseText);
-    }
-  };
-
-  // 手动指定响应编码格式
-  if (xhr.overrideMimeType) {
-    xhr.overrideMimeType('text\/plain; charset=utf-8');
-  }
-
-  // 发出请求
-  xhr.send(null);
-};
-
-exports.post = () => {
-  const xhr = getXHR();
-  xhr.open('post', 'test.php', true);
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      alert(xhr.responseText);
-    }
-  };
-  // 比GET请求多了一步
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  // 另外,数据是通过send方法发送的
-  xhr.send('qs=true&userName=abc&pwd=123456');
-};
+export default fetch;

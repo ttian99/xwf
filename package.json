@@ -11,7 +11,9 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "querystring": "^0.2.0"
+  },
   "devDependencies": {
     "amazeui-touch": "^1.0.0-rc.2",
     "autoprefixer": "^6.3.3",

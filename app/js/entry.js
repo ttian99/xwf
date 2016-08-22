@@ -34,4 +34,7 @@ import '../style/degreeResult-style.scss';
 // load App
 // import './App';
 // import './test';
+import cfg from './config/cfg';
+cfg.init();
+
 import './index';

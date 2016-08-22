@@ -1,11 +1,13 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { Container, Field, Grid, Col, Button, Icon } from 'amazeui-touch';
+import { Container, Field, Grid, Col, Button, Icon, Modal, Notification } from 'amazeui-touch';
 import Logo from './Logo';
 import Search from './Search';
 import SearchTips from './SearchTips';
 import loc from './utils/loc';
 import mock from './utils/mock';
+import Req from './utils/Req';
+import Waiting from './utils/Waiting';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -13,6 +15,7 @@ class SearchBar extends React.Component {
         // Operations usually carried out in componentWillMount go here
         console.log(this.props);
         this.state = {
+            isSearching: false, // 是否正在网络搜索
             value: "", // 输入框的值
             searchValue: "", // 搜索的关键字
             showTips: true,
@@ -65,6 +68,12 @@ class SearchBar extends React.Component {
     handleSubmit = (value) => {
         console.log('----------- handleSubmit ----------');
         console.log(this.props);
+        this.setState({isSearching: true});
+
+        // 请求网络
+        Req.searchSchool({},() => {
+          
+        });
         const searchValue = value || this.refs.input.getValue();
         if (!searchValue) {
             return;
@@ -78,8 +87,12 @@ class SearchBar extends React.Component {
         //   this.props.onChangePage(false);
         //   this.props.setInputValue();
         // } else {
-        this.mockData(searchValue);
+        
         // }
+        setTimeout(()=>{
+          this.mockData(searchValue);
+          this.setState({isSearching: false});
+        }, 3000);
     }
 
     // 是否需要获取焦点
@@ -103,6 +116,7 @@ class SearchBar extends React.Component {
     // 处理获得焦点
     handleFocus = () => {
         // console.log('-------- handleFocus ------');
+        this.setInputValue("");
         this.changeTipsPage(true);
     }
 
@@ -258,6 +272,9 @@ class SearchBar extends React.Component {
             </Container>
 
             { tips }
+            
+            <Waiting isOpen={this.state.isSearching}/>
+            
           </Container>
         );
 

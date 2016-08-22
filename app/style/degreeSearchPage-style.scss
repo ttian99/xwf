@@ -3,8 +3,9 @@
 }
 
 .degree-search-page-grid {
-    padding-left: 15px;
-    padding-right: 15px;
+    text-align: center;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 input.degree-search-page.field {
@@ -13,6 +14,13 @@ input.degree-search-page.field {
 }
 
 .degree-search-page-select {
-  height: 44px;
-  width: 90px;
+  // height: 44px;
+  // width: 90px;
+  height: 100%;
+  width: 90%;
+}
+
+.degree-search-page-searchBtn {
+  height: 47px;
+  width: 90%;
 }
