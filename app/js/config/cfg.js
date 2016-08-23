@@ -13,7 +13,7 @@ cfg._initSvr = function () {
   if (cfg.isDev) {
     cfg.svrUrl = 'http://localhost:8010';
   } else {
-    cfg.svrUrl = 'http://localhost:8010';
+    cfg.svrUrl = 'http://192.168.1.116:8010';
   }
 }
 

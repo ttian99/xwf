@@ -52,10 +52,6 @@ class SearchBar extends React.Component {
         this.setInputValue("", true);
     }
 
-    // 
-    handleChange = (event) => {
-    }
-
     // 文字输入监听
     handleInput = (event) => {
         const value = this.refs.input.getValue();
@@ -68,12 +64,7 @@ class SearchBar extends React.Component {
     handleSubmit = (value) => {
         console.log('----------- handleSubmit ----------');
         console.log(this.props);
-        this.setState({isSearching: true});
 
-        // 请求网络
-        Req.searchSchool({},() => {
-          
-        });
         const searchValue = value || this.refs.input.getValue();
         if (!searchValue) {
             return;
@@ -81,6 +72,22 @@ class SearchBar extends React.Component {
         this.needGetFocus(false);
         this.setTipsArr(searchValue);
         this.changeTipsPage(false);
+        
+        this.setState({isSearching: true});
+        // 请求网络
+        Req.searchSchool({words: searchValue},(err, res) => {
+          this.setState({isSearching: false});
+          console.log('--------- submit back -------');
+          console.log(res);
+          if (err) {
+            console.log('req.searchschool err --');
+            console.log(err);
+            return;
+          }
+          console.log(res);
+          var list = res.matchArr;
+          this.freshData(searchValue, list);
+        });
 
         // if (this.props.mode === "degree") {
         //   console.log('------ degree --------');
@@ -89,10 +96,10 @@ class SearchBar extends React.Component {
         // } else {
         
         // }
-        setTimeout(()=>{
-          this.mockData(searchValue);
-          this.setState({isSearching: false});
-        }, 3000);
+        // setTimeout(()=>{
+        //   this.mockData(searchValue);
+        //   this.setState({isSearching: false});
+        // }, 3000);
     }
 
     // 是否需要获取焦点
@@ -168,7 +175,7 @@ class SearchBar extends React.Component {
     changeTipsPage = (showTips) => {
         this.setState({ showTips: showTips });
     }
-    // 
+    // 是否选中了历史搜索
     setIsClickTips = (newState) => {
         this.setState({ isClickTips: newState });
     }
@@ -177,22 +184,27 @@ class SearchBar extends React.Component {
     mockData = (searchValue) => {
         const type = this.props.mode;
         const list = mock[type];
-        const data = {
+        this.freshData(searchValue, list);
+    }
+
+    // 整理数据并刷新
+    freshData = (searchValue, list) => {
+      const data = {
             haveData: true,
             list: list,
             searchValue: searchValue
-        }
-        if (this.props.mode === "degree") {
-            console.log("----------------- degree ------------");
+      }
+      if (this.props.mode === "degree") {
+          console.log("----------------- degree ------------");
 
-            data.ridgepoleList = mock.ridgepoleList;
-            data.roomList = mock.roomList;
+          data.ridgepoleList = mock.ridgepoleList;
+          data.roomList = mock.roomList;
 
-            this.props.onChangePage(false);
-            this.props.onChangeData(data);
-        } else {
-            this.props.onChangeResult(data);
-        }
+          this.props.onChangePage(false);
+          this.props.onChangeData(data);
+      } else {
+          this.props.onChangeResult(data);
+      }
     }
 
     render() {
@@ -223,10 +235,7 @@ class SearchBar extends React.Component {
         );      
             
         // 清除内容按钮
-        const clearStyle = {
-          height: 16,
-          width: 16
-        };
+        const clearStyle = { height: 16, width: 16};
         const clearBtn = (
           <img src = "i/clearIcon.png"
             onClick = { this.handleClearBtn }
