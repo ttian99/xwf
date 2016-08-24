@@ -5,8 +5,9 @@ import MinList from './MinList';
 class ResultList extends React.Component {
   constructor(props, state) {
     super(props, state);
+    console.log(props);
     this.state={
-      schoolList: this.props.schoolList,
+      dataList: this.props.dataList,
     };
   }
 
@@ -17,26 +18,44 @@ class ResultList extends React.Component {
 
   // 父辈组件更改props后 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.schoolList !== undefined) {
+    if (nextProps.dataList !== undefined) {
       this.setState({
-        schoolList: nextProps.schoolList
+        dataList: nextProps.dataList
       });
     }
   }
 
   render() {
+    const schoolResult = (
+      this.state.dataList.map((item, i) => {
+        return (
+          <MinList key={i} minList={item.list} keyValue={item.key} mode={this.props.mode}/>
+        );
+      })
+    );
+
+    const districtResult = (
+      this.state.dataList.map((item, i) => {
+        return (
+          <MinList key={i} minList={item.list} keyValue={item.key} mode={this.props.mode}/>
+        );
+      })
+    );
+    // const 
     return (
       <Container>
-        {
-          this.state.schoolList.map((item, i) => {
-            return(
-              <MinList key={i} dataList={item.list} keyValue={item.key} mode={this.props.mode}/>
-            );
-          })
-        }
+        {schoolResult}
       </Container>
     );
   }
 }
 
 export default ResultList;
+
+
+  // this.state.dataList.map((item, i) => {
+          //   return(
+          //     <MinList key={i} minList={item.list} keyValue={item.key} mode={this.props.mode}/>
+          //   );
+          // })
+

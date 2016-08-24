@@ -11,7 +11,7 @@ class Search extends React.Component {
     // Operations usually carried out in componentWillMount go here
     this.state = {
       haveData: false,  // 是否有详细的数据
-      schoolList: [],   // 搜索的list
+      dataList: [],   // 搜索的list
       searchValue: ""   // 搜索的关键字
     };
   }
@@ -37,7 +37,7 @@ class Search extends React.Component {
     console.log('---------- changeState -------');
     this.setState({
       haveData: data.haveData,
-      schoolList: data.list,
+      dataList: data.list,
       searchValue: data.searchValue,
     });
   }
@@ -48,7 +48,7 @@ class Search extends React.Component {
       page =  (
         <Container className="detail-search-cnt" scrollable={true}>
               <SearchBar {...this.props} onChangeResult={this.changeResultState.bind(this)}/>
-              <ResultList {...this.props} schoolList={this.state.schoolList}/>
+              <ResultList {...this.props} dataList={this.state.dataList}/>
         </Container>  
       )
     } else {

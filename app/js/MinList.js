@@ -6,14 +6,14 @@ class MinList extends React.Component {
     super(props);
     console.log(this.props);
     this.state={
-      dataList: this.props.dataList,
+      minList: this.props.minList,
     };
   }
 
   // 默认props
   static defaultProps = {
     mode: 'school',
-    dataList: [],
+    minList: [],
     keyValue: '',
   }
 
@@ -38,7 +38,7 @@ class MinList extends React.Component {
     titleObj.t3 = this.props.mode === "school" ? "开盘(年)" : "建校年份";
     const header = (
       <Container>
-        <p className="detail-search-label">{txtObj.bigin}<span>{txtObj.key}</span>  {txtObj.end} ({this.props.dataList.length}) </p>
+        <p className="detail-search-label">{txtObj.bigin}<span>{txtObj.key}</span>  {txtObj.end} ({this.props.minList.length}) </p>
         <Grid className="detail-list-header" collapse={true} bordered={false}>
           <Col className="detail-name" cols={3}><span>{titleObj.t1}</span></Col>
           <Col cols={2}><span>{titleObj.t2}</span></Col>
@@ -51,7 +51,7 @@ class MinList extends React.Component {
       <List className="detail-list">
         {
           /* 遍历数据 */
-          this.props.dataList.map((item, i) => {
+          this.props.minList.map((item, i) => {
             const ret = this.render3Col(item, i);
             return ret;
           })

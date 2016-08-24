@@ -74,32 +74,47 @@ class SearchBar extends React.Component {
         this.changeTipsPage(false);
         
         this.setState({isSearching: true});
-        // 请求网络
-        Req.searchSchool({words: searchValue},(err, res) => {
-          this.setState({isSearching: false});
-          console.log('--------- submit back -------');
-          console.log(res);
-          if (err) {
-            console.log('req.searchschool err --');
-            console.log(err);
-            return;
-          }
-          console.log(res);
-          var list = res.matchArr;
-          this.freshData(searchValue, list);
-        });
 
-        // if (this.props.mode === "degree") {
-        //   console.log('------ degree --------');
-        //   this.props.onChangePage(false);
-        //   this.props.setInputValue();
-        // } else {
-        
-        // }
+        this.reqNet(searchValue);
+
+        // 模拟请求
         // setTimeout(()=>{
         //   this.mockData(searchValue);
         //   this.setState({isSearching: false});
         // }, 3000);
+    }
+
+    // 请求网络
+    reqNet = (searchValue) => {
+      if (this.props.mode == 'school') {
+          Req.searchSchool({ words: searchValue }, (err, res) => {
+            this.setState({ isSearching: false });
+            console.log('--------- submit back -------');
+            console.log(res);
+            if (err) {
+              console.log('req.searchschool err --');
+              console.log(err);
+              return;
+            }
+            console.log(res);
+            var list = res.matchArr;
+            this.freshData(searchValue, list);
+          });
+        } else if (this.props.mode == 'district') {
+          Req.searchVillage({ words: searchValue }, (err, res) => {
+            this.setState({ isSearching: false });
+            console.log('--------- submit back -------');
+            console.log(res);
+            if (err) {
+              console.log('req.searchvillage err --');
+              console.log(err);
+              return;
+            }
+            console.log(res);
+            var list = res.matchArr;
+            this.freshData(searchValue, list);
+          });
+        }
     }
 
     // 是否需要获取焦点

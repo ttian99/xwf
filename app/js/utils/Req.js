@@ -9,5 +9,12 @@ Req.searchSchool = (params, cb) => {
   });
 };
 
+Req.searchVillage = (params, cb) => {
+  console.log('------ req searchVillage --');
+  params.cmd = 'search-village';
+  fetch(params, (err, json) => {
+    cb(err, json);
+  });
+};
 
 export default Req;

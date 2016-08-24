@@ -24,7 +24,7 @@ class SearchTips extends React.Component {
   }
 
   clickItem = (str) => {
-    console.log('-- clickItem = ' + str );
+    // console.log('-- clickItem = ' + str );
     this.props.quickSubmit(str);
   }
   // 清除历史记录 
@@ -34,8 +34,8 @@ class SearchTips extends React.Component {
 
   // 鼠标按下时
   mouseDown() {
-    console.log('--------- mouseDown----------');
-    console.log(this.props);
+    // console.log('--------- mouseDown----------');
+    // console.log(this.props);
     this.props.setIsClickTips(true);
   }
                
