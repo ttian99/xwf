@@ -114,6 +114,8 @@ class SearchBar extends React.Component {
             var list = res.matchArr;
             this.freshData(searchValue, list);
           });
+        } else if (this.props.mode == 'degree') {
+          
         }
     }
 
@@ -228,6 +230,8 @@ class SearchBar extends React.Component {
             defaultPlaceholder = "请输入学校关键字"
         } else if (this.props.mode === "district") {
             defaultPlaceholder = "请输入楼盘全名"
+        } else if (this.props.mode === "degree") {
+            defaultPlaceholder = "输入楼盘关键字"
         }
 
         // 搜索图标
