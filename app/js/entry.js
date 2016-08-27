@@ -35,6 +35,6 @@ import '../style/degreeResult-style.scss';
 // import './App';
 // import './test';
 import cfg from './config/cfg';
-cfg.init();
+cfg.init(cfg);
 
 import './index';

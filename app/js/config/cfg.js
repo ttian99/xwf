@@ -1,20 +1,25 @@
+import rstCode from '../client-svr-cfg/rst-code-def.js';
+import xwfCommCfg from '../client-svr-cfg/xwf-comm-cfg.js';
+// import rstCode  from './lib/client-svr-cfg/rst-code-def.js'
+
 const cfg = {
-  isDev: true,
+  isDev: false,
   ver: '0.0.1', // 版本号,
-  svrUrl:  '' // 
+  svrUrl: '', // 服务器地址,
+  // 初始化
+  init: (cfg) => {
+    cfg.initRstCode(cfg);
+    cfg.initCommCfg(cfg);
+    console.log(cfg);
+  },
+  // 初始化返回码
+  initRstCode: (cfg) => {
+    rstCode(cfg);
+  },
+  // 初始化前后端通用配置文件
+  initCommCfg: (cfg) => {
+    xwfCommCfg(cfg);
+  },
 };
-
-
-cfg.init = function() {
-  this._initSvr();
-}
-
-cfg._initSvr = function () {
-  if (cfg.isDev) {
-    cfg.svrUrl = 'http://localhost:8010';
-  } else {
-    cfg.svrUrl = 'http://192.168.1.116:8010';
-  }
-}
 
 export default cfg;
