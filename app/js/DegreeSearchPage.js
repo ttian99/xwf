@@ -39,6 +39,14 @@ class DegreeSearchPage extends React.Component {
 
   handleChange() {}
   
+  handleRidgepoleSel() {
+    console.log('------- select ridgepole -------');
+  }
+
+  handleRoomSel() {
+    console.log('------- select room -------');
+  }
+
   changeValue(value) {
     this.refs.input.value = this.props.searchValue;
   }
@@ -91,9 +99,9 @@ class DegreeSearchPage extends React.Component {
             <Field
               className="degree-search-page-select"
               type="select"
-              // label="Select"
               ref="rpSel"
               defaultValue="default"
+              onSelect={this.handleRidgepoleSel}
             >
               <option value="default" style={{display: "none"}}>{this.state.curRidgepole || '栋数'}</option>
              {
@@ -107,9 +115,10 @@ class DegreeSearchPage extends React.Component {
             <Field
               className="degree-search-page-select"
               type="select"
-              // label="Select"
+              placeholder="测试房号"
               ref="roomSel"
               defaultValue="default"
+              onSelect={console.log('------------select-room--------')}
             >
               <option value="default" style={{display: "none"}}>{this.state.curRoom || '房号'}</option>
               {

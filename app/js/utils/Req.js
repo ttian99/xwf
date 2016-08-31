@@ -17,4 +17,12 @@ Req.searchVillage = (params, cb) => {
   });
 };
 
+Req.checkKey = (params, cb) => {
+  console.log('------ req checkKey --');
+  params.cmd = 'check-key';
+  fetch(params, (err, json) => {
+    cb(err, json);
+  });
+};
+
 export default Req;

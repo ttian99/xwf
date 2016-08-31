@@ -8,6 +8,7 @@ import loc from './utils/loc';
 import mock from './utils/mock';
 import Req from './utils/Req';
 import Waiting from './utils/Waiting';
+import Pop from './utils/Pop';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -21,6 +22,8 @@ class SearchBar extends React.Component {
             showTips: true,
             tipsArr: [],
             isClickTips: false, //是否点击到了搜索记录框
+            showPop: false,
+            popTxt: '',
         };
         console.log("this.state.isClickTips = " + this.state.isClickTips);
     }
@@ -84,6 +87,11 @@ class SearchBar extends React.Component {
         // }, 3000);
     }
 
+    popMsg = (msg, isShow) => {
+      console.log('--------- popMsg -------');
+      this.setState({ msg: msg, showPop: isShow });
+    }
+
     // 请求网络
     reqNet = (searchValue) => {
       if (this.props.mode == 'school') {
@@ -94,8 +102,13 @@ class SearchBar extends React.Component {
             if (err) {
               console.log('req.searchschool err --');
               console.log(err);
+
+              // this.popMsg(err, true);
               return;
             }
+            // if (res.code !== '0') {
+            //   this.popMsg(res.msg, true);
+            // }
             console.log(res);
             var list = res.matchArr;
             this.freshData(searchValue, list);
@@ -115,7 +128,16 @@ class SearchBar extends React.Component {
             this.freshData(searchValue, list);
           });
         } else if (this.props.mode == 'degree') {
-          
+          Req.checkKey({words: searchValue}, (err, res) => {
+            console.log('---- submit back --------');
+            console.log(res);
+            if (err) {
+              console.log('req.searchvillage err --');
+              console.log(err);
+              return;
+            }
+          });
+           this.mockData(searchValue);
         }
     }
 
@@ -303,6 +325,7 @@ class SearchBar extends React.Component {
             
             <Waiting isOpen={this.state.isSearching}/>
             
+
           </Container>
         );
 
@@ -311,3 +334,5 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
+
+// <Pop onPopMsg={this.popMsg.bind(this)} isShow={this.state.showPop}/>
