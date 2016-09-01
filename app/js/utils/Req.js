@@ -25,4 +25,12 @@ Req.checkKey = (params, cb) => {
   });
 };
 
+Req.selRidgepole = (params, cb) => {
+  console.log('------ req ridgepole --');
+  params.cmd = 'select-ridgepole';
+  fetch(params, (err, json) => {
+    cb(err, json);
+  });
+};
+
 export default Req;
