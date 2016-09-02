@@ -3,7 +3,7 @@ import xwfCommCfg from '../client-svr-cfg/xwf-comm-cfg.js';
 // import rstCode  from './lib/client-svr-cfg/rst-code-def.js'
 
 const cfg = {
-  isDev: false,
+  isDev: true,
   ver: '0.0.1', // 版本号,
   svrUrl: '', // 服务器地址,
   // 初始化

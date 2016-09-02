@@ -15,7 +15,7 @@ class DegreeResult extends React.Component {
       searchValue: "",   // 搜索的关键字
       ridgepoleList: [], // 栋数数组
       roomList: [],      // 房间号数组
-      title: "",
+      title: "",      // 搜索的全部关键字
     };
   }
 

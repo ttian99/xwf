@@ -129,6 +129,7 @@ class SearchBar extends React.Component {
           });
         } else if (this.props.mode == 'degree') {
           Req.checkKey({words: searchValue}, (err, res) => {
+            this.setState({ isSearching: false });
             console.log('---- submit back --------');
             console.log(res);
             if (err) {
@@ -136,8 +137,10 @@ class SearchBar extends React.Component {
               console.log(err);
               return;
             }
+            var list = res.matchArr;
+            this.freshData(searchValue, list);
           });
-           this.mockData(searchValue);
+          //  this.mockData(searchValue);
         }
     }
 
@@ -236,11 +239,13 @@ class SearchBar extends React.Component {
       if (this.props.mode === "degree") {
           console.log("----------------- degree ------------");
 
-          data.ridgepoleList = mock.ridgepoleList;
-          data.roomList = mock.roomList;
+          // data.ridgepoleList = mock.ridgepoleList;
+          // data.roomList = mock.roomList;
 
-          this.props.onChangePage(false);
-          this.props.onChangeData(data);
+          // this.props.onChangePage(false);
+          // this.props.onChangeData('searchValue', searchValue);
+          // this.props.onChangeData(data);
+          this.props.onChangeKeyList(data.list);
       } else {
           this.props.onChangeResult(data);
       }
