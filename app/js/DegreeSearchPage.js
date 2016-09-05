@@ -58,8 +58,8 @@ class DegreeSearchPage extends React.Component {
     if (curRoom === "default" || curRidgepole === "default") {
       return;
     }
-    // this.setState({ title: title });
-    // this.changeShowResult(true);
+    this.setState({ title: title });
+    this.changeShowResult(true);
     // this.getTitle();
   }
 
@@ -142,6 +142,7 @@ class DegreeSearchPage extends React.Component {
   }
 
   render() {
+    console.log('------- this.props =====  ' + this.props.searchValue);
     const label = this.props.searchValue || "查学位锁定情况";
 
     const search = (

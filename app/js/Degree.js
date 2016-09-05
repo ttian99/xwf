@@ -81,7 +81,12 @@ class Degree extends React.Component {
 
   render() {
     const keyList = (this.state.keyList.length>0) 
-                    ? <DegreeKey keyList={this.state.keyList}/>
+                    ? <DegreeKey {...this.props} 
+                        onChangeRpList={this.changeRpList.bind(this)} 
+                        keyList={this.state.keyList}
+                        onChangeKeyList={this.changeKeyList.bind(this)}
+                        onChangePage={this.changePageState.bind(this) }
+                        />
                     : null ;
     const mainPage = (
       <DegreeSearchPage 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Field, Grid, Col, List } from 'amazeui-touch';
 import MinList from './MinList';
+import Req from './utils/Req';
 
 class DegreeKey extends React.Component {
   constructor(props, state) {
@@ -25,6 +26,22 @@ class DegreeKey extends React.Component {
 
   selectKey(key) {
     console.log('======== selectKey ======= ' + key);
+    // this.setState({ isSearching: true });
+    Req.selectKey({ words: key }, (err, json) => {
+      // this.setState({ isSearching: false });
+      console.log('------- back selectKey ------- ');
+      console.log(json);
+      var data = {}
+      data.searchValue = key;
+      data.list = json.matchArr;
+      console.log(this.props);
+      
+      this.props.onChangeKeyList([]);
+      this.props.onChangeRpList(data);
+      this.props.onChangePage(false);
+      // this.props.onChangeRoomList();
+    });
+    // this.props.onChangeKeyList(data.list);
   }
 
   render() {

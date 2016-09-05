@@ -25,6 +25,14 @@ Req.checkKey = (params, cb) => {
   });
 };
 
+Req.selectKey = (params, cb) => {
+  console.log('------ req selectKey --');
+  params.cmd = 'select-key';
+  fetch(params, (err, json) => {
+    cb(err, json);
+  });
+};
+
 Req.selRidgepole = (params, cb) => {
   console.log('------ req ridgepole --');
   params.cmd = 'select-ridgepole';

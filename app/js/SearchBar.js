@@ -139,6 +139,7 @@ class SearchBar extends React.Component {
             }
             var list = res.matchArr;
             this.freshData(searchValue, list);
+            console.log('hahahahah')
           });
           //  this.mockData(searchValue);
         }
