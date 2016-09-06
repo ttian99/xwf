@@ -3,24 +3,24 @@ import { Container, Field, Grid, Col, Button, NavBar } from 'amazeui-touch';
 import Logo from './Logo';
 import DegreeSearchPage from './DegreeSearchPage';
 import Search from './Search';
+import _ from 'lodash';
 
 class DegreeResult extends React.Component {
   constructor(props) {
     super(props);
-    // Operations usually carried out in componentWillMount go here
     this.state = {
       isDetail: false,
-      // haveData: false,  // 是否有详细的数据
-      // schoolList: [],   // 搜索的list
       searchValue: "",   // 搜索的关键字
-      ridgepoleList: [], // 栋数数组
-      roomList: [],      // 房间号数组
       title: "",      // 搜索的全部关键字
     };
   }
 
   static defaultProps = {
-    mode: 'degree'
+    mode: 'degree',
+    lockList: [
+      // {name: '望海小学', year: '2015年'},
+      // {name: '蛇口中学', year: '未锁定'},
+    ]
   }
 
   handleBack = () => {
@@ -29,6 +29,16 @@ class DegreeResult extends React.Component {
   }
 
   render() {
+
+    const list = _.map(this.props.lockList, (item, id) => {
+      return (
+        <Grid  className="degree-result-grid" key={id} collapse={false} bordered={false}>
+          <Col cols={4}><span>{item.name}</span></Col>
+          <Col cols={2}><span>{item.year}</span></Col>
+        </Grid>
+      )
+    })
+
     return(
       <Container className="degree-result-cnt">
         <NavBar className="degree-result-navbar" title={this.props.title} leftNav={[{className: "leftnav-back-btn", onClick: this.handleBack.bind(this), title: '返回', icon: 'left-nav'}]}/>
@@ -37,15 +47,7 @@ class DegreeResult extends React.Component {
             <Col cols={4}><span>对口学校</span></Col>
             <Col cols={2}><span>锁定年限</span></Col>
         </Grid>
-
-        <Grid className="degree-result-grid" collapse={false} bordered={false}>
-          <Col cols={4}><span>望海小学</span></Col>
-          <Col cols={2}><span>2015年</span></Col>
-        </Grid>
-        <Grid  className="degree-result-grid" collapse={false} bordered={false}>
-          <Col cols={4}><span>蛇口中学</span></Col>
-          <Col cols={2}><span>未锁定</span></Col>
-        </Grid>
+        {list}
       </Container>
     );
   }

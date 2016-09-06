@@ -21,6 +21,7 @@ class DegreeSearchPage extends React.Component {
       haveValue: false,
       disableRoomSel: true,
       disableRpSel: false,
+      lockList: [],   // 查询到的锁定列表
     };
   }
   
@@ -58,9 +59,10 @@ class DegreeSearchPage extends React.Component {
     if (curRoom === "default" || curRidgepole === "default") {
       return;
     }
-    this.setState({ title: title });
-    this.changeShowResult(true);
+    // this.setState({ title: title });
+    // this.changeShowResult(true);
     // this.getTitle();
+    this.reqSearchLock(title);
   }
 
   handleChange() {}
@@ -76,6 +78,11 @@ class DegreeSearchPage extends React.Component {
       // var data = {}
       // data.list = json.matchArr;
       // this.props.onChangeRoomList(data);
+      this.setState({ 
+        title: words,
+        lockList: json.matchArr,
+      });
+      this.changeShowResult(true);
     });
   }
   
@@ -228,7 +235,7 @@ class DegreeSearchPage extends React.Component {
     );
     const resultPage = (
       <Container>
-        <DegreeResult {...this.props} title={this.state.title} onChangeShowResult={this.changeShowResult.bind(this)} />
+        <DegreeResult {...this.props} lockList={this.state.lockList} title={this.state.title} onChangeShowResult={this.changeShowResult.bind(this)} />
       </Container>
     );
 
