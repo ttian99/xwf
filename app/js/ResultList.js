@@ -43,7 +43,7 @@ class ResultList extends React.Component {
     );
     // const 
     return (
-      <Container>
+      <Container className="result-cnt">
         {schoolResult}
       </Container>
     );
