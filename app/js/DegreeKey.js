@@ -24,15 +24,21 @@ class DegreeKey extends React.Component {
     }
   }
 
-  selectKey(key) {
-    console.log('======== selectKey ======= ' + key);
-    // this.setState({ isSearching: true });
-    Req.selectKey({ words: key }, (err, json) => {
-      // this.setState({ isSearching: false });
+  selectKey(keyObj) {
+    console.log('======== selectKey ======= ' + JSON.stringify(keyObj));
+    var keyWords = keyObj.keyWords;
+    var idx = keyObj.idx;
+    this.setState({ isSearching: true });
+    Req.selectKey({ 
+      "keyWords": keyWords, 
+      "idx": idx 
+    }, (err, json) => {
+      this.setState({ isSearching: false });
       console.log('------- back selectKey ------- ');
       console.log(json);
       var data = {}
-      data.searchValue = key;
+      data.idx = idx;
+      data.searchValue = keyObj.keyWords;
       data.list = json.matchArr;
       console.log(this.props);
       
@@ -50,7 +56,7 @@ class DegreeKey extends React.Component {
         {
           this.state.keyList.map((item, i) => {
             return (
-              <List.Item key={i} onClick={this.selectKey.bind(this, item)}>{item}</List.Item>
+              <List.Item key={i} onClick={this.selectKey.bind(this, item)}>{item.keyWords}</List.Item>
             );
           })
         }

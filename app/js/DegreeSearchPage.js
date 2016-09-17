@@ -26,6 +26,7 @@ class DegreeSearchPage extends React.Component {
   }
   
   static defaultProps = {
+    idx: '', //查询文件名
     mode: 'degree',
     searchValue: "",
     ridgepoleList: [], // 栋数
@@ -38,7 +39,11 @@ class DegreeSearchPage extends React.Component {
     console.log('---------------- componentWillReceiveProps -------');
     console.log(nextProps);
     const disableRoomSel = (nextProps.roomList && nextProps.roomList.length > 0) ? false : true;
-    this.setState({ disableRoomSel: disableRoomSel });
+    const idx = nextProps.idx ? nextProps.idx : this.props.idx;
+    this.setState({ 
+      disableRoomSel: disableRoomSel,
+      idx: idx
+    });
   }
 
   handleClick() {
@@ -89,8 +94,13 @@ class DegreeSearchPage extends React.Component {
   // 网络请求选择栋数 
   reqSelRp(words) {
     console.log('------ reqSelRp -------');
+    // console.log(words);
     this.setState({isSearching: true});
-    Req.selRidgepole({words: words}, (err, json) => {
+    Req.selRidgepole({
+      keyWords: this.props.searchValue,
+      building: words,
+      idx: this.props.idx
+    }, (err, json) => {
       this.setState({isSearching: false});
       console.log('------- back reqSelRp ------- ');
       console.log(json);
@@ -106,7 +116,8 @@ class DegreeSearchPage extends React.Component {
     const rpSelValue = this.refs.rpSel.getValue();
     const newSearchValue = this.props.searchValue + rpSelValue;
     console.log('newSearchValue = ' + newSearchValue);
-    this.reqSelRp(newSearchValue);     
+    // this.reqSelRp(newSearchValue);
+    this.reqSelRp(rpSelValue);     
   }
 
   // 选择房号 

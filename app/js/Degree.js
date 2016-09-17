@@ -10,6 +10,7 @@ class Degree extends React.Component {
     super(props);
     // Operations usually carried out in componentWillMount go here
     this.state = {
+      idx: '', //插叙文件的引导词
       isSearch: false,
       // haveData: false,  // 是否有详细的数据
       // schoolList: [],   // 搜索的list
@@ -44,6 +45,7 @@ class Degree extends React.Component {
   // 更新rplist数据
   changeRpList(data) {
     this.setState({
+      idx: data.idx,
       searchValue: data.searchValue,
       ridgepoleList: data.list,
       roomList: [],
@@ -59,6 +61,7 @@ class Degree extends React.Component {
   // 重置page
   resetPage() {
     this.setState({
+      idx: '',
       searchValue: '',
       ridgepoleList: [],
       roomList: [],
@@ -92,6 +95,7 @@ class Degree extends React.Component {
       <DegreeSearchPage 
         {...this.props}
         onChangePage={this.changePageState.bind(this) }
+        idx={this.state.idx}
         searchValue={this.state.searchValue}
         ridgepoleList={this.state.ridgepoleList}
         roomList={this.state.roomList}
