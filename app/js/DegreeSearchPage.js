@@ -54,9 +54,13 @@ class DegreeSearchPage extends React.Component {
   // 搜索按钮 
   handleSearch() {
     console.log('---- search -------');
+    const roomObj = this.props.roomList[this.refs.roomSel.getValue()];
+    // console.log(roomObj);
+    console.log('roomObj = ' + JSON.stringify(roomObj));
     const searchValue = this.props.searchValue;
     const curRidgepole = this.refs.rpSel.getValue();
-    const curRoom = this.refs.roomSel.getValue();
+    const curRoom = roomObj.room;
+    // console.log(curRoom)
     const title = searchValue + curRidgepole + curRoom;
     if (!searchValue) {
       return;
@@ -67,16 +71,21 @@ class DegreeSearchPage extends React.Component {
     // this.setState({ title: title });
     // this.changeShowResult(true);
     // this.getTitle();
-    this.reqSearchLock(title);
+    console.log("********************* title = " + title);
+    this.reqSearchLock(roomObj, title);
   }
 
   handleChange() {}
 
   // 网络请求查询锁定
-  reqSearchLock(words) {
+  reqSearchLock(roomObj, title) {
     console.log('------- reqSearchLock -----------');
     this.setState({ isSearching: true });
-    Req.searchLock({ words: words }, (err, json) => {
+    Req.searchLock({ 
+      words: title,
+      code: roomObj.code,
+      idx: this.props.idx
+    }, (err, json) => {
       this.setState({ isSearching: false });
       console.log('------- back reqSearchLock ------- ');
       console.log(json);
@@ -84,7 +93,7 @@ class DegreeSearchPage extends React.Component {
       // data.list = json.matchArr;
       // this.props.onChangeRoomList(data);
       this.setState({ 
-        title: words,
+        title: title,
         lockList: json.matchArr,
       });
       this.changeShowResult(true);
@@ -92,13 +101,12 @@ class DegreeSearchPage extends React.Component {
   }
   
   // 网络请求选择栋数 
-  reqSelRp(words) {
+  reqSelRp(newSearchValue) {
     console.log('------ reqSelRp -------');
-    // console.log(words);
     this.setState({isSearching: true});
     Req.selRidgepole({
       keyWords: this.props.searchValue,
-      building: words,
+      building: newSearchValue,
       idx: this.props.idx
     }, (err, json) => {
       this.setState({isSearching: false});
@@ -114,10 +122,9 @@ class DegreeSearchPage extends React.Component {
   handleRidgepoleSel() {
     console.log('------- select ridgepole -------');
     const rpSelValue = this.refs.rpSel.getValue();
-    const newSearchValue = this.props.searchValue + rpSelValue;
-    console.log('newSearchValue = ' + newSearchValue);
-    // this.reqSelRp(newSearchValue);
-    this.reqSelRp(rpSelValue);     
+    // const newSearchValue = this.props.searchValue + rpSelValue;
+    // console.log('newSearchValue = ' + newSearchValue);
+    this.reqSelRp(rpSelValue);    
   }
 
   // 选择房号 
@@ -182,7 +189,6 @@ class DegreeSearchPage extends React.Component {
         type="select"
         ref="rpSel"
         defaultValue="default"
-        onSelect={this.handleRidgepoleSel.bind(this)}
         onChange={this.handleRidgepoleSel.bind(this)}
         disabled={this.state.disableRpSel}
         >
@@ -207,9 +213,9 @@ class DegreeSearchPage extends React.Component {
         disabled={this.state.disableRoomSel}
         >
         <option value="default" style={{ display: "none" }}>{'房号'}</option>
-        {
+        { 
           this.props.roomList.map((item, i) => {
-            return (<option key={i} value={item}>{item}</option>)
+            return (<option key={i} value={i}>{item.room}</option>)
           })
         }
       </Field>

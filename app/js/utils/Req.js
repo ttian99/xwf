@@ -44,6 +44,7 @@ Req.selRidgepole = (params, cb) => {
 Req.searchLock = (params, cb) => {
   console.log('------ req searchLock --');
   params.cmd = 'search-lock';
+  params.timeout = 10000;
   fetch(params, (err, json) => {
     cb(err, json);
   });
