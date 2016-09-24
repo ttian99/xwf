@@ -87,62 +87,42 @@ class SearchBar extends React.Component {
         // }, 3000);
     }
 
-    popMsg = (msg, isShow) => {
-      console.log('--------- popMsg -------');
-      this.setState({ msg: msg, showPop: isShow });
+    popMsg = (txt, isShow) => {
+      this.setState({ popTxt: txt, showPop: isShow });
     }
 
     // 请求网络
     reqNet = (searchValue) => {
       if (this.props.mode == 'school') {
-          Req.searchSchool({ words: searchValue }, (err, res) => {
-            this.setState({ isSearching: false });
-            console.log('--------- submit back -------');
-            console.log(res);
-            if (err) {
-              console.log('req.searchschool err --');
-              console.log(err);
-
-              // this.popMsg(err, true);
-              return;
-            }
-            // if (res.code !== '0') {
-            //   this.popMsg(res.msg, true);
-            // }
-            console.log(res);
-            var list = res.matchArr;
-            this.freshData(searchValue, list);
-          });
+          Req.searchSchool({ words: searchValue }, this.handleReqBack.bind(this));
         } else if (this.props.mode == 'district') {
-          Req.searchVillage({ words: searchValue }, (err, res) => {
-            this.setState({ isSearching: false });
-            console.log('--------- submit back -------');
-            console.log(res);
-            if (err) {
-              console.log('req.searchvillage err --');
-              console.log(err);
-              return;
-            }
-            console.log(res);
-            var list = res.matchArr;
-            this.freshData(searchValue, list);
-          });
+          Req.searchVillage({ words: searchValue }, this.handleReqBack.bind(this));
         } else if (this.props.mode == 'degree') {
-          Req.checkKey({words: searchValue}, (err, res) => {
-            this.setState({ isSearching: false });
-            console.log('---- submit back --------');
-            console.log(res);
-            if (err) {
-              console.log('req.searchvillage err --');
-              console.log(err);
-              return;
-            }
-            var list = res.matchArr;
-            this.freshData(searchValue, list);
-            console.log('hahahahah')
-          });
-          //  this.mockData(searchValue);
+          Req.checkKey({words: searchValue}, this.handleReqBack.bind(this));
         }
+    }
+
+    // 统一处理请求回调
+    handleReqBack = (err, res) => {
+      this.setState({ isSearching: false });
+      console.log(res);
+      console.log('-- ' + res.cmd + ' back --');
+      if (err) {
+        console.log(err);
+        console.log('-- ' + res.cmd + ' err --');
+        this.popMsg(err, true);
+        return;
+      }
+      if (res.code !== 0) {
+        this.popMsg(res.msg, true);
+      }
+      var list = res.matchArr;
+      if (list.length === 0) {
+        this.popMsg('查询结果为空', true);
+      } else {
+        const searchValue = res.words;
+        this.freshData(searchValue, list);
+      }
     }
 
     // 是否需要获取焦点
@@ -330,7 +310,7 @@ class SearchBar extends React.Component {
             { tips }
             
             <Waiting isOpen={this.state.isSearching}/>
-            
+            <Pop onPopMsg={this.popMsg.bind(this)} isShow={this.state.showPop} txt={this.state.popTxt}/>
 
           </Container>
         );
@@ -340,5 +320,3 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
-
-// <Pop onPopMsg={this.popMsg.bind(this)} isShow={this.state.showPop}/>

@@ -8,6 +8,7 @@ import ResultList from './ResultList';
 import DegreeResult from './DegreeResult';
 import Waiting from './utils/Waiting';
 import Req from './utils/Req';
+import Pop from './utils/Pop.js';
 
 class DegreeSearchPage extends React.Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class DegreeSearchPage extends React.Component {
       disableRoomSel: true,
       disableRpSel: false,
       lockList: [],   // 查询到的锁定列表
+      popTxt: '',
+      showPop: false,
     };
   }
   
@@ -112,6 +115,9 @@ class DegreeSearchPage extends React.Component {
       this.setState({isSearching: false});
       console.log('------- back reqSelRp ------- ');
       console.log(json);
+      if (!json.matchArr || json.matchArr.length === 0) {
+        
+      }
       var data = {}
       data.list = json.matchArr;
       this.props.onChangeRoomList(data);
@@ -164,6 +170,11 @@ class DegreeSearchPage extends React.Component {
       // curRoom: curRoom, 
     });
     this.changeShowResult(true);
+  }
+
+  // 通知接口
+  popMsg = (txt, isShow) => {
+    this.setState({ popTxt: txt, showPop: isShow });
   }
 
   render() {
@@ -248,6 +259,7 @@ class DegreeSearchPage extends React.Component {
           </Col>
         </Grid>
         <Waiting isOpen={this.state.isSearching}/>
+        <Pop onPopMsg={this.popMsg.bind(this)} isShow={this.state.showPop} txt={this.state.popTxt}/>
       </Container>
     );
     const resultPage = (
@@ -258,7 +270,7 @@ class DegreeSearchPage extends React.Component {
 
     if (this.state.showResult) {
       return (resultPage);
-    } else {
+    } else {      
       return (mainPage)
     }
   }
