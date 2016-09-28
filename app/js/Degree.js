@@ -83,14 +83,15 @@ class Degree extends React.Component {
   // }
 
   render() {
-    const keyList = (this.state.keyList.length>0) 
-                    ? <DegreeKey {...this.props} 
-                        onChangeRpList={this.changeRpList.bind(this)} 
-                        keyList={this.state.keyList}
-                        onChangeKeyList={this.changeKeyList.bind(this)}
-                        onChangePage={this.changePageState.bind(this) }
-                        />
-                    : null ;
+    const keyPage = (
+      <DegreeKey {...this.props}
+        onChangeRpList={this.changeRpList.bind(this) }
+        keyList={this.state.keyList}
+        onChangeKeyList={this.changeKeyList.bind(this) }
+        onChangePage={this.changePageState.bind(this) }
+        />
+    )
+
     const mainPage = (
       <DegreeSearchPage 
         {...this.props}
@@ -116,7 +117,7 @@ class Degree extends React.Component {
           onChangeKeyList={this.changeKeyList.bind(this)}
           onResetPage={this.resetPage.bind(this)}
         />
-        {keyList}
+        {keyPage}
       </Container>
     );
     const ret = this.state.isSearch ? searchPage  : mainPage; 

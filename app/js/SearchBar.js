@@ -87,9 +87,9 @@ class SearchBar extends React.Component {
         // }, 3000);
     }
 
-    popMsg = (txt, isShow) => {
-      this.setState({ popTxt: txt, showPop: isShow });
-    }
+    // popMsg = (txt, isShow) => {
+    //   this.setState({ popTxt: txt, showPop: isShow });
+    // }
 
     // 请求网络
     reqNet = (searchValue) => {
@@ -107,22 +107,15 @@ class SearchBar extends React.Component {
       this.setState({ isSearching: false });
       console.log(res);
       console.log('-- ' + res.cmd + ' back --');
+      var list = [];
       if (err) {
         console.log(err);
         console.log('-- ' + res.cmd + ' err --');
-        this.popMsg(err, true);
-        return;
+        // return;
       }
-      if (res.code !== 0) {
-        this.popMsg(res.msg, true);
-      }
-      var list = res.matchArr;
-      if (list.length === 0) {
-        this.popMsg('查询结果为空', true);
-      } else {
-        const searchValue = res.words;
-        this.freshData(searchValue, list);
-      }
+      list = res.matchArr || list;
+      const searchValue = res.words;
+      this.freshData(searchValue, list);
     }
 
     // 是否需要获取焦点
@@ -310,7 +303,7 @@ class SearchBar extends React.Component {
             { tips }
             
             <Waiting isOpen={this.state.isSearching}/>
-            <Pop onPopMsg={this.popMsg.bind(this)} isShow={this.state.showPop} txt={this.state.popTxt}/>
+            
 
           </Container>
         );
@@ -320,3 +313,5 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
+
+// <Pop onPopMsg={this.popMsg.bind(this)} isShow={this.state.showPop} txt={this.state.popTxt}/>

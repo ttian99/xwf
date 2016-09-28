@@ -51,16 +51,22 @@ class DegreeKey extends React.Component {
   }
 
   render() {
+    const listResult = (
+        this.state.keyList.map((item, i) => {
+          return (
+            <List.Item key={i} onClick={this.selectKey.bind(this, item) }>{item.keyWords}</List.Item>
+          );
+        })
+    )
+    const noResult = (
+      <List.Item>
+        <span>无匹配结果，请输入完整小区名称；</span>
+      </List.Item>
+    );
+
+    const ret = this.state.keyList.length < 1 ? noResult : listResult ;
     return (
-      <List>
-        {
-          this.state.keyList.map((item, i) => {
-            return (
-              <List.Item key={i} onClick={this.selectKey.bind(this, item)}>{item.keyWords}</List.Item>
-            );
-          })
-        }
-      </List>
+      <List>{ret}</List>
     );
   }
 }
